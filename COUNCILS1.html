@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en" class="councils-acc-page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Official Committee Portals for BMUN'26.">
+    <title>Councils | BMUN'26</title>
+    <link rel="stylesheet" href="councils-accordion.css">
+    <link rel="icon" href="favicon.png?v=4" type="image/png">
+    <link rel="preload" as="image" href="bmunlogo.png">
+    <link rel="preload" as="image" href="gallery-images/cover24-day2.png" fetchpriority="high">
+<!-- FI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Noto+Sans+JP:wght@700&family=Anton&family=Anton+SC&family=Bebas+Neue&family=Cinzel:wght@600;700&family=Raleway:wght@300;400;600&family=Lato:wght@300;400;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+/* N */
+.header-container {
+  position: fixed;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.header-container.is-nav-hidden {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.brand-left {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.25));
+}
+
+.nav-right-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.nav-pill-right {
+  pointer-events: auto;
+  background: #a8c5dc;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(18, 24, 32, 0.10);
+  border-radius: 9999px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 8px 32px rgba(18, 24, 32, 0.12);
+  height: 54px;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 14px;
+  gap: 0;
+  color: #3a6b94;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: gap 0.35s cubic-bezier(0.25, 1, 0.5, 1), padding 0.35s cubic-bezier(0.25, 1, 0.5, 1), color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.nav-item:hover {
+  color: #121820;
+  padding: 0 18px;
+  gap: 8px;
+  background: #e0e8ee;
+  border-color: rgba(168, 197, 220, 0.85);
+}
+
+.nav-item i {
+  position: relative;
+  z-index: 2;
+  font-size: 1rem;
+  color: inherit;
+}
+
+.nav-item:hover i,
+.nav-item.active i {
+  color: #121820;
+}
+
+.nav-text {
+  position: relative;
+  z-index: 2;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  max-width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: max-width 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease;
+}
+
+.nav-item:hover .nav-text {
+  max-width: 140px;
+  opacity: 1;
+}
+
+/* RB */
+.register-bubble {
+  pointer-events: auto;
+  position: relative;
+  flex-shrink: 0;
+  background: #a8c5dc;
+  backdrop-filter: var(--ios-blur, blur(25px));
+  -webkit-backdrop-filter: var(--ios-blur, blur(25px));
+  border: 1px solid rgba(224, 232, 238, 0.45);
+  border-radius: 9999px;
+  padding: 6px 30px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 8px 32px rgba(73, 130, 174, 0.38);
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.register-bubble::before {
+  content: '';
+  position: absolute;
+  top: var(--y, 50%);
+  left: var(--x, 50%);
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(18, 24, 32, 1) 0%, rgba(58, 107, 148, 0.95) 55%, rgba(73, 130, 174, 0.85) 78%, transparent 100%);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+  z-index: 1;
+}
+
+.register-bubble:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.register-bubble:hover {
+  border-color: rgba(224, 232, 238, 0.7);
+  box-shadow: 0 12px 40px rgba(58, 107, 148, 0.45);
+  transform: scale(1.02);
+  animation: registerRoundedPulse 1.6s ease-out infinite;
+}
+
+.register-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #121820;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+}
+
+.register-content i {
+  margin-left: 2px;
+  transition: transform 0.2s ease;
+}
+
+.register-bubble:hover .register-content i {
+  transform: translateX(4px) scale(1.1);
+}
+
+@keyframes registerRoundedPulse {
+  0% {
+    box-shadow:
+      0 12px 40px rgba(58, 107, 148, 0.45),
+      0 0 0 0 rgba(168, 197, 220, 0.7);
+  }
+  70% {
+    box-shadow:
+      0 12px 40px rgba(58, 107, 148, 0.45),
+      0 0 0 18px rgba(73, 130, 174, 0);
+  }
+  100% {
+    box-shadow:
+      0 12px 40px rgba(58, 107, 148, 0.45),
+      0 0 0 0 rgba(73, 130, 174, 0);
+  }
+}
+
+/* HROB */
+.hero-btn:hover,
+.hero-action-btn:hover,
+.contact-cta-btn:hover,
+.submit-btn:hover,
+.clean-back-btn:hover,
+.arrow-btn:hover,
+.action-bubble-link:hover,
+button:not([disabled]):hover {
+  animation: btnRingPulse 1.6s ease-out infinite;
+}
+
+@keyframes btnRingPulse {
+  0% { box-shadow: 0 0 0 0 rgba(168, 197, 220, 0.7); }
+  70% { box-shadow: 0 0 0 14px rgba(73, 130, 174, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(73, 130, 174, 0); }
+}
+
+
+
+/* NB */
+@media (max-width: 1024px) {
+  .header-container {
+    flex-direction: column;
+    gap: 14px;
+    top: 12px;
+    padding: 0 16px;
+  }
+
+  .brand-left {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .brand-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .nav-right-wrapper {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 0;
+  }
+
+  .nav-pill-right {
+    flex-grow: 1;
+    justify-content: center;
+    height: auto;
+    padding: 6px;
+    flex-wrap: wrap;
+  }
+
+  .register-bubble {
+    flex-grow: 1;
+    height: 54px;
+  }
+}
+
+@media (max-width: 720px) {
+  .header-container {
+    top: 10px;
+    gap: 10px;
+    padding: 0 12px;
+  }
+
+  .nav-item {
+    height: 36px;
+    padding: 0 10px;
+  }
+
+  .nav-item:hover {
+    padding: 0 12px;
+  }
+
+  .nav-item i {
+    font-size: 0.95rem;
+  }
+
+  .register-bubble {
+    padding: 6px 20px;
+    height: 48px;
+  }
+
+  .register-content {
+    font-size: 1.2rem;
+    gap: 10px;
+  }
+}
+
+/* STA */
+/* TE */
+.animate-overshoot {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.animate-overshoot.run-entrance {
+  animation: springSettle 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15) forwards;
+}
+
+.animate-fade-up {
+  transform: translateY(15px);
+  opacity: 0;
+}
+
+.animate-fade-up.run-entrance {
+  animation: directionalUp 0.35s ease-out forwards;
+}
+
+@keyframes springSettle {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes directionalUp {
+  0% { transform: translateY(15px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .register-bubble {
+    animation: none;
+  }
+  .animate-overshoot,
+  .animate-fade-up {
+    transform: none;
+    opacity: 1;
+    will-change: auto;
+  }
+  .animate-overshoot.run-entrance,
+  .animate-fade-up.run-entrance {
+    animation: none;
+  }
+}
+
+
+        /* V */
+        :root {
+            --royal-dark: #e0e8ee;
+            --accent-bronze: #3a6b94;
+            --royal-gold: #a8c5dc;
+            --antique-gold: #4982ae;
+            --glass-card: rgba(224, 232, 238, 0.72);
+            --glass-border: rgba(168, 197, 220, 0.45);
+            --parchment: #e0e8ee;
+            --ink: #121820;
+            --ios-blur: blur(25px);
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            font-family: 'Lato', sans-serif;
+            background-color: #ffffff;
+            color: #121212;
+            overflow: hidden;
+        }
+
+        body.councils-page-scroll {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        /* legacy fullscreen slider — unused after accordion */
+        #slider-workspace {
+            display: none !important;
+        }
+
+        .slider-list {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slider-item {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.45s ease, visibility 0.45s;
+            z-index: 10;
+            contain: paint;
+        }
+
+        .slider-item.active-slide {
+            opacity: 1;
+            visibility: visible;
+            z-index: 20;
+            contain: none;
+        }
+
+        /* Keep outgoing council fully opaque underneath so the loading photo never peeks through */
+        .slider-item.is-leaving {
+            opacity: 1;
+            visibility: visible;
+            z-index: 15;
+            transition: none;
+        }
+
+        .slider-item:not(.active-slide):not(.is-leaving) {
+            pointer-events: none;
+        }
+
+        /* Darken via overlay (same look as filter, far cheaper on GPU) */
+        .slider-item .bg-image {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-color: #121820;
+            transform: translateZ(0);
+        }
+
+        .slider-item .bg-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(180deg, rgba(18, 24, 32, 0.42) 0%, rgba(18, 24, 32, 0.55) 48%, rgba(18, 24, 32, 0.62) 100%);
+        }
+
+        /* Plain text on the councils slider: no entrance animation, always visible */
+        #slider-workspace .animate-overshoot,
+        #slider-workspace .animate-fade-up {
+            transform: none;
+            opacity: 1;
+            will-change: auto;
+            animation: none !important;
+        }
+
+        /* Masked rise reveal (like the TOTO stats): each line slides up from
+           behind its own clip line, staggered badge -> title -> desc. */
+        .slider-content .slide-title,
+        .slider-content .slide-desc,
+        .slider-content .council-fullname,
+        .slider-content .council-level {
+            overflow: hidden;
+        }
+        .slider-content .reveal-inner {
+            display: inline-block;
+        }
+        .slider-item.text-reveal .reveal-inner {
+            animation: textRiseIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        .slider-item.text-reveal .slide-title .reveal-inner { animation-delay: 0ms; }
+        .slider-item.text-reveal .council-fullname .reveal-inner { animation-delay: 60ms; }
+        .slider-item.text-reveal .council-level .reveal-inner { animation-delay: 90ms; }
+        .slider-item.text-reveal .slide-desc .reveal-inner  { animation-delay: 140ms; }
+
+        @keyframes textRiseIn {
+            from { transform: translateY(110%); }
+            to   { transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .slider-item.text-reveal .reveal-inner { animation: none; }
+        }
+
+        .slider-content {
+            position: absolute;
+            top: 50%;
+            left: 4%;
+            transform: translateY(-50%);
+            width: min(680px, 86%);
+            max-width: 86%;
+            z-index: 40;
+            pointer-events: none;
+        }
+
+        .slider-content > * { pointer-events: auto; }
+
+        .council-glass-card {
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 28px;
+            padding: clamp(22px, 3vw, 36px);
+            backdrop-filter: blur(12px) saturate(1.1);
+            -webkit-backdrop-filter: blur(12px) saturate(1.1);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 20px 44px rgba(0, 0, 0, 0.28);
+            color: #ffffff;
+        }
+
+        .council-head {
+            display: block;
+            margin: 0 0 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .council-head-left {
+            min-width: 0;
+        }
+
+        .slider-content .slide-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 4.2rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: 3px;
+            margin: 0 0 10px;
+            padding: 0;
+            border: none;
+            color: #ffffff;
+            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+        }
+
+        .council-subrow {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .council-fullname {
+            display: block;
+            flex: 1 1 auto;
+            min-width: 0;
+            font-family: 'Raleway', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.35;
+        }
+
+        .council-level {
+            flex: 0 0 auto;
+            margin-left: auto;
+            text-align: right;
+            font-family: 'Raleway', sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.88);
+            white-space: nowrap;
+            padding-top: 0;
+        }
+
+        .slider-content .slide-desc {
+            font-family: 'Lato', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.92);
+            text-shadow: none;
+            margin: 0;
+        }
+
+        @media (max-width: 720px) {
+            .council-subrow {
+                flex-wrap: wrap;
+                gap: 6px 12px;
+            }
+            .council-level {
+                width: auto;
+                text-align: left;
+                margin-left: 0;
+            }
+        }
+
+        /* ABFHRSTUCNCTC */
+        .slider-control-panel {
+            position: absolute;
+            top: 120px;
+            bottom: 48px;
+            right: 4%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .slider-control-panel > * {
+            pointer-events: auto;
+        }
+
+        .arrow-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(2, 3, 8, 0.5);
+            border: 1px solid var(--glass-border);
+            color: var(--antique-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            flex-shrink: 0;
+        }
+        
+        .arrow-btn:hover {
+            background: var(--antique-gold);
+            color: var(--royal-dark);
+            border-color: var(--antique-gold);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .slider-indicators {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 4px 0;
+            max-height: 100%;
+            min-height: 0;
+            overflow: hidden;
+            flex: 0 1 auto;
+        }
+        .indicator-dot { width: 6px; height: 16px; background: rgba(255, 255, 255, 0.15); border-radius: 9999px; cursor: pointer; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); flex-shrink: 0; }
+        .indicator-dot.active { background: var(--antique-gold); height: 32px; box-shadow: 0 0 15px var(--antique-gold); }
+
+        /* MQ */
+        @media (max-width: 1024px) {
+            .slider-content {
+                left: 4%;
+                width: min(640px, 88%);
+                max-width: 88%;
+                transform: translateY(-50%);
+            }
+            /* SHITKCVGUR */
+            .slider-control-panel { top: 200px; bottom: 32px; right: 2%; gap: 16px; }
+            .slider-content .slide-title { font-size: 3.2rem; }
+            .arrow-btn { width: 48px; height: 48px; }
+        }
+
+        @media (max-width: 720px) {
+            .slider-content {
+                left: 5%;
+                width: 90%;
+                max-width: 90%;
+                padding-right: 0;
+                box-sizing: border-box;
+                transform: translateY(-50%);
+            }
+            .slider-content .slide-title { font-size: clamp(2.2rem, 10vw, 2.8rem); letter-spacing: 1px; }
+            .slider-content .slide-desc { font-size: 14px; }
+            .slider-control-panel {
+                top: auto;
+                bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+                left: 0;
+                right: 0;
+                flex-direction: row;
+                justify-content: center;
+                gap: 14px;
+            }
+            .slider-indicators {
+                flex-direction: row;
+                gap: 5px;
+                margin: 0 4px;
+                max-width: 60vw;
+                max-height: none;
+                align-items: center;
+            }
+            .indicator-dot { width: 9px; height: 5px; }
+            .indicator-dot.active { width: 20px; height: 5px; box-shadow: 0 0 15px var(--antique-gold); }
+            .arrow-btn { width: 44px; height: 44px; }
+        }
+
+        @media (max-height: 700px) and (min-width: 721px) {
+            .slider-control-panel { top: 100px; bottom: 24px; gap: 12px; }
+        }
+        @media (max-height: 700px) {
+            .slider-content .slide-title { font-size: clamp(2rem, 8vh, 3.2rem); }
+        }
+    
+
+/* BTS */
+.bmun-page-transition {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  background: #121820;
+  overflow: hidden;
+}
+.bmun-page-transition.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.bmun-page-transition.is-done {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+.bpt-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 28% 18%, rgba(73, 130, 174, 0.35), transparent 52%),
+    radial-gradient(ellipse at 78% 72%, rgba(58, 107, 148, 0.55), transparent 48%),
+    linear-gradient(155deg, #3a6b94 0%, #121820 48%, #3a6b94 100%);
+  transform: scale(1.03);
+}
+.bpt-stage {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  box-shadow: none;
+  will-change: transform;
+  border-radius: 0;
+}
+.bpt-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: #e0e8ee;
+  box-shadow: inset 0 0 40px rgba(168, 197, 220, 0.22);
+  will-change: transform, opacity;
+  transform: scaleX(0.02);
+}
+.bpt-panel-left {
+  left: 0;
+  transform-origin: right center;
+}
+.bpt-panel-right {
+  right: 0;
+  transform-origin: left center;
+}
+.bpt-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 10px;
+  margin-left: -5px;
+  background: #121820;
+  z-index: 4;
+  opacity: 1;
+}
+.bpt-stitch {
+  width: 18px;
+  height: 1.5px;
+  background: #3a6b94;
+  position: absolute;
+  left: 50%;
+}
+.bpt-stitch.is-left { transform: translateX(calc(-100% - 6px)); }
+.bpt-stitch.is-right { transform: translateX(6px); }
+.bpt-seam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  margin-left: -0.5px;
+  background: rgba(73, 130, 174, 0.55);
+  z-index: 5;
+  opacity: 0;
+}
+.bpt-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 72px;
+  height: 72px;
+  margin: -36px 0 0 -36px;
+  border: 1.5px solid #4982ae;
+  border-radius: 50%;
+  background: #121820;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.85);
+  box-shadow: 0 0 22px rgba(73, 130, 174, 0.28);
+}
+.bpt-seal img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.25));
+}
+.bpt-line {
+  position: absolute;
+  width: 2px;
+  background: #121820;
+  z-index: 6;
+  opacity: 0;
+}
+.bpt-line-l {
+  left: 10%;
+  bottom: 0;
+  height: 0;
+  transform-origin: bottom center;
+}
+.bpt-line-r {
+  right: 10%;
+  top: 0;
+  height: 0;
+  transform-origin: top center;
+}
+.bpt-black {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #121820;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform: scaleX(0);
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+.bpt-title-block {
+  text-align: center;
+  color: rgba(224, 232, 238, 0.95);
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
+  z-index: 2;
+  position: relative;
+  padding: 0 1.25rem;
+  max-width: min(92vw, 44rem);
+  will-change: transform, opacity, filter;
+}
+.bpt-kanji {
+  font-family: 'Anton SC', 'Anton', sans-serif;
+  font-size: clamp(2.8rem, 8.5vw, 6rem);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  font-weight: 400;
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(168, 197, 220, 0.92);
+}
+.bpt-kanji-fill {
+  position: absolute;
+  inset: 0;
+  color: #e0e8ee;
+  -webkit-text-stroke: 0 transparent;
+  clip-path: inset(100% 0 0 0);
+  pointer-events: none;
+}
+.bpt-kanji.is-filled {
+  color: #e0e8ee;
+  -webkit-text-stroke: 0 transparent;
+}
+.bpt-sub {
+  font-family: 'Oswald', 'Bebas Neue', sans-serif;
+  font-size: clamp(1.35rem, 3.8vw, 2.35rem);
+  letter-spacing: 0.28em;
+  margin-top: 0.85rem;
+  font-weight: 500;
+  color: rgba(224, 232, 238, 0.92);
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+.bpt-tag {
+  font-family: 'Oswald', 'Bebas Neue', sans-serif;
+  font-size: clamp(0.62rem, 1.3vw, 0.8rem);
+  letter-spacing: 0.42em;
+  margin-top: 0.85rem;
+  color: rgba(73, 130, 174, 0.85);
+  text-transform: uppercase;
+}
+.bpt-reveal-bg {
+  position: absolute;
+  inset: 0;
+  background: none;
+  opacity: 0;
+  z-index: 1;
+  transform: none;
+  will-change: opacity;
+}
+html.councils-acc-page .bpt-reveal-bg::before {
+  inset: -28px;
+  background-position: center top;
+  transform: scale(1.08);
+}
+html.councils-acc-page .bpt-reveal-bg::after {
+  background:
+    linear-gradient(to top, #a8c5dc 0%, rgba(168, 197, 220, 0) 42%),
+    linear-gradient(185deg, rgba(58, 107, 148, 0.48) 0%, rgba(73, 130, 174, 0.40) 38%, rgba(42, 90, 130, 0.52) 100%),
+    radial-gradient(ellipse 70% 55% at 50% 42%, rgba(168, 197, 220, 0.28) 0%, transparent 68%);
+}
+.header-container.is-transition-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+@media (max-width: 700px) {
+  .bpt-stage {
+    width: 100vw;
+    height: 100dvh;
+  }
+  .bpt-kanji { font-size: clamp(2rem, 11vw, 3.4rem); }
+  .bpt-sub { font-size: clamp(1.05rem, 5.5vw, 1.6rem); letter-spacing: 0.18em; }
+  .bpt-seal { width: 58px; height: 58px; margin: -29px 0 0 -29px; }
+  .bpt-seal img { width: 30px; height: 30px; }
+}
+
+@media (max-width: 720px) {
+  .bpt-stage {
+    width: 100%;
+    height: 100%;
+  }
+  .bpt-seal {
+    width: 52px;
+    height: 52px;
+    margin: -26px 0 0 -26px;
+  }
+  .bpt-seal img { width: 28px; height: 28px; }
+  .bpt-line-l { left: 10%; }
+  .bpt-line-r { right: 10%; }
+  .bpt-sub {
+    font-size: clamp(1.5rem, 7vw, 2.4rem);
+    letter-spacing: 0.12em;
+  }
+}
+
+
+/* mobile burger menu (phones only) */
+.nav-burger { display: none; }
+@media (max-width: 720px) {
+  .header-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+  }
+  .brand-left { width: auto; justify-content: flex-start; }
+  .nav-burger {
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    background: #a8c5dc;
+    border: 1px solid rgba(18, 24, 32, 0.10);
+    border-radius: 9999px;
+    box-shadow: 0 8px 32px rgba(18, 24, 32, 0.12);
+    cursor: pointer;
+  }
+  .nav-burger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #121820;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .header-container.menu-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .header-container.menu-open .nav-burger span:nth-child(2) { opacity: 0; }
+  .header-container.menu-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-right-wrapper {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 12px;
+    right: 12px;
+    width: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  }
+  .header-container.menu-open .nav-right-wrapper {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+  .nav-pill-right {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 24px;
+    padding: 8px;
+    gap: 6px;
+    width: 100%;
+  }
+  .nav-item { justify-content: flex-start; gap: 10px; height: 42px; }
+  .nav-text { max-width: 200px; opacity: 1; }
+  .register-bubble { width: 100%; }
+}
+</style>
+    <link rel="stylesheet" href="bmun-site-theme.css">
+</head>
+<body class="councils-page-scroll">
+
+<script>
+/* RBHF */
+(function () {
+  function bindRegisterFill(btn) {
+    if (!btn || btn.dataset.fillBound === '1') return;
+    btn.dataset.fillBound = '1';
+    var raf = 0;
+    btn.addEventListener('mousemove', function (e) {
+      var x = e.clientX;
+      var y = e.clientY;
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        raf = 0;
+        var rect = btn.getBoundingClientRect();
+        btn.style.setProperty('--x', (x - rect.left) + 'px');
+        btn.style.setProperty('--y', (y - rect.top) + 'px');
+      });
+    });
+  }
+
+  function initRegisterCursorTracker() {
+    document.querySelectorAll('.register-bubble').forEach(bindRegisterFill);
+  }
+
+  window.initRegisterCursorTracker = initRegisterCursorTracker;
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRegisterCursorTracker);
+  } else {
+    initRegisterCursorTracker();
+  }
+})();
+
+</script>
+
+
+
+<!-- BOTO -->
+<div id="bmun-page-transition" class="bmun-page-transition is-active" aria-hidden="false" data-text-animate-skip>
+    <div class="bpt-backdrop"></div>
+    <div class="bpt-stage">
+        <div class="bpt-panel bpt-panel-left"></div>
+        <div class="bpt-panel bpt-panel-right"></div>
+        <div class="bpt-spine" id="bpt-spine">
+            <span class="bpt-stitch is-left" style="top:12%"></span>
+            <span class="bpt-stitch is-right" style="top:12%"></span>
+            <span class="bpt-stitch is-left" style="top:28%"></span>
+            <span class="bpt-stitch is-right" style="top:28%"></span>
+            <span class="bpt-stitch is-left" style="top:44%"></span>
+            <span class="bpt-stitch is-right" style="top:44%"></span>
+            <span class="bpt-stitch is-left" style="top:60%"></span>
+            <span class="bpt-stitch is-right" style="top:60%"></span>
+            <span class="bpt-stitch is-left" style="top:76%"></span>
+            <span class="bpt-stitch is-right" style="top:76%"></span>
+        </div>
+        <div class="bpt-seam" id="bpt-seam"></div>
+        <div class="bpt-line bpt-line-l" id="bpt-line-l"></div>
+        <div class="bpt-line bpt-line-r" id="bpt-line-r"></div>
+        <div class="bpt-seal" id="bpt-seal">
+            <img src="bmunlogo.png" alt="" width="34" height="34" decoding="async">
+        </div>
+        <div class="bpt-black" id="bpt-black">
+            <div class="bpt-reveal-bg" id="bpt-reveal-bg"></div>
+                        <div class="bpt-title-block" id="bpt-title-block">
+                <div class="bpt-kanji" id="bpt-kanji">COUNCILS<span class="bpt-kanji-fill" id="bpt-kanji-fill" aria-hidden="true">COUNCILS</span></div>
+                <div class="bpt-tag">BMUN'26</div>
+            </div></div>
+        </div>
+    </div>
+</div>
+
+    <div class="header-container is-transition-hidden" id="site-header">
+        <!-- TN --><button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false" type="button">
+            <span></span><span></span><span></span>
+        </button>
+
+        
+        <div class="nav-right-wrapper">
+            <div class="nav-pill-right">
+                <a href="index.html" class="nav-item"><span class="material-symbols-outlined nav-ico" aria-hidden="true">home</span><span class="nav-text">HOME</span></a>
+                <div class="nav-dd nav-dd--councils" data-text-animate-skip>
+                  <a href="COUNCILS1.html" class="nav-item nav-dd-trigger active" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined nav-ico" aria-hidden="true">account_balance</span><span class="nav-text">COUNCILS</span></a>
+                                    <div class="nav-dd-mega" role="menu">
+                    <a href="COUNCILS1.html#council-unsc" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/un.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">UNSC</span></a>
+                    <a href="COUNCILS1.html#council-uncsw" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/unwomen.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">UNCSW</span></a>
+                    <a href="COUNCILS1.html#council-fifa" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/fifa.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">FIFA</span></a>
+                    <a href="COUNCILS1.html#council-fia" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/fia-official.png" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">FIA</span></a>
+                    <a href="COUNCILS1.html#council-fcc" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/fcc.png" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">FCC</span></a>
+                    <a href="COUNCILS1.html#council-hcc" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/hcc.png" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">HCC</span></a>
+                    <a href="COUNCILS1.html#council-covhe" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/covhe.png" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">COVHE</span></a>
+                    <a href="COUNCILS1.html#council-unicef" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/unicef.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">UNICEF</span></a>
+                    <a href="COUNCILS1.html#council-eu" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/eu.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">EU</span></a>
+                    <a href="COUNCILS1.html#council-copuos" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/unoosa.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">COPUOS</span></a>
+                    <a href="COUNCILS1.html#council-unga" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/un.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">UNGA</span></a>
+                    <a href="COUNCILS1.html#council-pokemon" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/pokemon.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">POKEMON</span></a>
+                    <a href="COUNCILS1.html#council-who" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/who.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">WHO</span></a>
+                    <a href="COUNCILS1.html#council-loksabha" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/loksabha.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">LOK SABHA</span></a>
+                  </div>
+                </div>
+                <a href="index.html" class="brand-left brand-center">
+                    <img src="bmunlogo.png" alt="BMUN Logo" class="brand-logo" width="34" height="34" decoding="async">
+                </a>
+                                <div class="nav-dd nav-dd--secretariat" data-text-animate-skip>
+                  <a href="SECRETARIET2026.html" class="nav-item nav-dd-trigger" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined nav-ico" aria-hidden="true">supervisor_account</span><span class="nav-text">SECRETARIAT</span></a>
+                  <div class="nav-dd-mega" role="menu">
+                    <a href="SECRETARIET2026.html#dept-core" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">groups</span></span><span class="nav-mega-label">Core Sec</span></a>
+                    <a href="SECRETARIET2026.html#dept-directors" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">badge</span></span><span class="nav-mega-label">Directors</span></a>
+                    <a href="SECRETARIET2026.html#dept-research" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">science</span></span><span class="nav-mega-label">Research</span></a>
+                    <a href="SECRETARIET2026.html#dept-training" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">school</span></span><span class="nav-mega-label">Training</span></a>
+                    <a href="SECRETARIET2026.html#dept-logistics" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">local_shipping</span></span><span class="nav-mega-label">Logistics</span></a>
+                    <a href="SECRETARIET2026.html#dept-finance" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">payments</span></span><span class="nav-mega-label">Finance</span></a>
+                    <a href="SECRETARIET2026.html#dept-media" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">photo_camera</span></span><span class="nav-mega-label">Media</span></a>
+                    <a href="SECRETARIET2026.html#dept-operations" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">settings</span></span><span class="nav-mega-label">Operations</span></a>
+                    <a href="SECRETARIET2026.html#dept-security" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">security</span></span><span class="nav-mega-label">Security</span></a>
+                    <a href="SECRETARIET2026.html#dept-public-relations" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">campaign</span></span><span class="nav-mega-label">Public Relations</span></a>
+                    <a href="SECRETARIET2026.html#dept-hospitality" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">hotel</span></span><span class="nav-mega-label">Hospitality</span></a>
+                    <a href="SECRETARIET2026.html#dept-design-decor" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">palette</span></span><span class="nav-mega-label">Design &amp; Decor</span></a>
+                  </div>
+                </div>
+                                <a href="PROMOTIONS.html" class="nav-item"><span class="material-symbols-outlined nav-ico" aria-hidden="true">celebration</span><span class="nav-text">EVENTS</span></a>
+                <a href="INFORMATIONS.html" class="nav-item"><span class="material-symbols-outlined nav-ico" aria-hidden="true">info</span><span class="nav-text">INFORMATION</span></a>
+                <a href="GALLERY.html" class="nav-item"><span class="material-symbols-outlined nav-ico" aria-hidden="true">photo_library</span><span class="nav-text">GALLERY</span></a>
+            </div>
+
+            <a href="REGISTER1.html" class="register-bubble" id="magnetic-reg-btn">
+                <div class="register-content">
+                    <span>REGISTER</span>
+                    <i class="fas fa-arrow-right-to-bracket"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+        <!-- Councils expanding accordion (COUNCILSPAGETHING.mp4 mechanism) -->
+    <div id="council-acc-workspace">
+      <div class="hero-collage-bg" aria-hidden="true"></div>
+      <div class="council-acc-viewport">
+        <div class="council-acc-track" data-council-acc-track>
+            <article class="council-acc-panel is-active" id="council-unsc" data-council-acc-panel data-index="0" data-council="unsc" tabindex="0" aria-expanded="true" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/cover24-day2.png" alt="UNSC" loading="eager" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">01</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">UNSC</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">United Nations Security Council</span>
+                  <span class="council-acc-level">Senior Council</span>
+                </div>
+                <p class="council-acc-desc">Addressing threats to international peace and security through binding resolutions, sanctions frameworks, and mandate design for conflict zones under active diplomatic pressure.</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-uncsw" data-council-acc-panel data-index="1" data-council="uncsw" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/cover-day2.png" alt="UNCSW" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">02</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">UNCSW</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">UN Commission on the Status of Women</span>
+                  <span class="council-acc-level">Senior Council</span>
+                </div>
+                <p class="council-acc-desc">Drafting policy on gender equality, political participation, and economic empowerment, with a focus on closing structural gaps that limit women and girls globally.</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-fifa" data-council-acc-panel data-index="2" data-council="fifa" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/2J5A4571.jpg" alt="FIFA" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">03</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">FIFA</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">Federation Internationale de Football Association</span>
+                  <span class="council-acc-level">Senior Council</span>
+                </div>
+                <p class="council-acc-desc">Debating sports governance, tournament integrity, host-nation accountability, and the politics of global football as a stage for soft power and reform.</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-fia" data-council-acc-panel data-index="3" data-council="fia" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/2J5A4577.jpg" alt="FIA" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">04</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">FIA</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">Federation Internationale de l'Automobile</span>
+                  <span class="council-acc-level">Senior Council</span>
+                </div>
+                <p class="council-acc-desc">Negotiating motorsport governance, safety standards, sustainability in racing, and the politics of global automobile sport.</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-fcc" data-council-acc-panel data-index="4" data-council="fcc" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/cover-day1.png" alt="FCC" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">05</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">FCC</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">Site-Ψ (SCP)</span>
+                  <span class="council-acc-level">Senior Council</span>
+                </div>
+                <p class="council-acc-desc">Location: [DATA REDACTED]. Site-Ψ is situated two kilometres below sea level from the shore of [ ], a Nexus for anomalous activity. This Site houses the second most anomalies, after Site-19, with the highest census of the Foundation’s ‘Keter’ anomalies while also overseeing numerous ‘Safe’ and ‘Euclid’ anomalies. Site security is prioritized since the danger of containment breaches is heightened by the large number of anomalous objects contained in one location. Despite dangers, Site-Ψ staff is notorious for using unconventional methods of psychological [ ] for the containment of anomalies. As the staff of Site-Ψ, delegates are tasked with one simple job: Secure. Contain. Protect.</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-hcc" data-council-acc-panel data-index="5" data-council="hcc" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/cover24-closing.png" alt="HCC" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">06</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">HCC</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">The Macedonian Succession Crisis</span>
+                  <span class="council-acc-level">Senior Council</span>
+                </div>
+                <p class="council-acc-desc">On the twenty-ninth day of Daisios, Aléxandros the Great succumbed to illness, leaving the vast Macedonian Empire with an empty throne. As the rival generals, families, and companions of the late Emperor, the Diadochi are tasked with choosing a successor. Will the empire stand undivided in glorious majesty, or crumble into the shadow of ruin?</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-covhe" data-council-acc-panel data-index="6" data-council="covhe" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/cover-closing.png" alt="COVHE" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">07</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">COVHE</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">Covenant of the Hidden Eye</span>
+                  <span class="council-acc-level">Senior Council</span>
+                </div>
+                <p class="council-acc-desc">In the hands of the directors of [REDACTED] agencies lies a clandestine power to control the fate of the world. Diplomacy or destruction, what shall prevail? The Eye lurks.</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-unicef" data-council-acc-panel data-index="7" data-council="unicef" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/cover-opening.png" alt="UNICEF" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">08</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">UNICEF</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">United Nations Children&#x27;s Fund</span>
+                  <span class="council-acc-level">Junior Council</span>
+                </div>
+                <p class="council-acc-desc">Protecting child rights through education access, emergency relief, and health initiatives, while pressing states to fund and implement child-centered policy.</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-eu" data-council-acc-panel data-index="8" data-council="eu" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/cover24-opening.png" alt="EU" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">09</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">EU</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">European Union</span>
+                  <span class="council-acc-level">Junior Council</span>
+                </div>
+                <p class="council-acc-desc">Navigating integration, enlargement, and shared sovereignty — from migration and energy security to the Union’s role as a diplomatic and regulatory bloc.</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-copuos" data-council-acc-panel data-index="9" data-council="copuos" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/cover24-day2.png" alt="COPUOS" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">10</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">COPUOS</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">Committee on the Peaceful Uses of Outer Space</span>
+                  <span class="council-acc-level">Junior Council</span>
+                </div>
+                <p class="council-acc-desc">Setting norms for space exploration, satellite governance, and debris mitigation so outer space remains a domain for peaceful scientific and commercial use.</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-unga" data-council-acc-panel data-index="10" data-council="unga" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/cover24-opening.png" alt="UNGA" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">11</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">UNGA</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">United Nations General Assembly</span>
+                  <span class="council-acc-level">Junior Council</span>
+                </div>
+                <p class="council-acc-desc">The universal forum for multilateral debate — crafting resolutions, building coalitions, and setting the political tone on the year’s defining global questions.</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-pokemon" data-council-acc-panel data-index="11" data-council="pokemon" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/cover24-day1.png" alt="POKEMON" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">12</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">POKEMON</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">Special Committee Crisis Simulation</span>
+                  <span class="council-acc-level">Junior Council</span>
+                </div>
+                <p class="council-acc-desc">A high-energy special committee where trainers-turned-delegates negotiate alliances, manage sudden crises, and discover that even legendary power needs diplomacy.</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-who" data-council-acc-panel data-index="12" data-council="who" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/cover-opening.png" alt="WHO" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">13</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">WHO</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">World Health Organization</span>
+                  <span class="council-acc-level">Senior Council</span>
+                </div>
+                <p class="council-acc-desc">Member states set the rules for outbreak response, medicine access, and health financing. The committee weighs national sovereignty against the duty to protect public health across borders.</p>
+              </div>
+            </article>
+            <article class="council-acc-panel" id="council-loksabha" data-council-acc-panel data-index="13" data-council="loksabha" tabindex="-1" aria-expanded="false" role="button">
+              <div class="council-acc-photo">
+                <img src="gallery-images/cover24-closing.png" alt="Lok Sabha" loading="lazy" decoding="async">
+              </div>
+              <div class="council-acc-index" aria-hidden="true">14</div>
+              <div class="council-acc-copy">
+                <h2 class="council-acc-title">LOK SABHA</h2>
+                <div class="council-acc-meta">
+                  <span class="council-acc-fullname">Lok Sabha</span>
+                  <span class="council-acc-level">Senior Council</span>
+                </div>
+                <p class="council-acc-desc">The directly elected house of the Indian Parliament debates legislation, questions the government, and shapes the budget. Members decide which laws will govern the republic.</p>
+              </div>
+            </article>
+        </div>
+      </div>
+      <div class="council-acc-controls">
+        <button type="button" class="council-acc-arrow" data-council-acc-prev aria-label="Previous council"><i class="fas fa-chevron-left"></i></button>
+        <div class="council-acc-dots" id="council-acc-dots">
+              <button type="button" class="council-acc-dot is-active" data-target="0" aria-label="Go to UNSC"></button>
+              <button type="button" class="council-acc-dot" data-target="1" aria-label="Go to UNCSW"></button>
+              <button type="button" class="council-acc-dot" data-target="2" aria-label="Go to FIFA"></button>
+              <button type="button" class="council-acc-dot" data-target="3" aria-label="Go to FIA"></button>
+              <button type="button" class="council-acc-dot" data-target="4" aria-label="Go to FCC"></button>
+              <button type="button" class="council-acc-dot" data-target="5" aria-label="Go to HCC"></button>
+              <button type="button" class="council-acc-dot" data-target="6" aria-label="Go to COVHE"></button>
+              <button type="button" class="council-acc-dot" data-target="7" aria-label="Go to UNICEF"></button>
+              <button type="button" class="council-acc-dot" data-target="8" aria-label="Go to EU"></button>
+              <button type="button" class="council-acc-dot" data-target="9" aria-label="Go to COPUOS"></button>
+              <button type="button" class="council-acc-dot" data-target="10" aria-label="Go to UNGA"></button>
+              <button type="button" class="council-acc-dot" data-target="11" aria-label="Go to POKEMON"></button>
+              <button type="button" class="council-acc-dot" data-target="12" aria-label="Go to WHO"></button>
+              <button type="button" class="council-acc-dot" data-target="13" aria-label="Go to Lok Sabha"></button>
+        </div>
+        <button type="button" class="council-acc-arrow" data-council-acc-next aria-label="Next council"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <!-- Councils accordion boot -->
+    <script src="councils-accordion.js"></script>
+
+
+
+<script>
+/* PBTOL */
+(function () {
+
+  function playSaiseiPageTransition(done) {
+var root = document.getElementById('bmun-page-transition');
+    var header = document.getElementById('site-header') || document.querySelector('.header-container');
+    if (!root || typeof gsap === 'undefined') {
+      if (header) header.classList.remove('is-transition-hidden');
+      if (typeof done === 'function') done();
+      return;
+    }
+
+    var left = root.querySelector('.bpt-panel-left');
+    var right = root.querySelector('.bpt-panel-right');
+    var spine = document.getElementById('bpt-spine');
+    var seam = document.getElementById('bpt-seam');
+    var seal = document.getElementById('bpt-seal');
+    var lineL = document.getElementById('bpt-line-l');
+    var lineR = document.getElementById('bpt-line-r');
+    var black = document.getElementById('bpt-black');
+    var title = document.getElementById('bpt-title-block');
+    var kanji = document.getElementById('bpt-kanji');
+    var kanjiFill = document.getElementById('bpt-kanji-fill');
+    var revealBg = document.getElementById('bpt-reveal-bg');
+    var stage = root.querySelector('.bpt-stage');
+    var sub = root.querySelector('.bpt-sub');
+    var tag = root.querySelector('.bpt-tag');
+
+    root.classList.add('is-active');
+    root.setAttribute('aria-hidden', 'false');
+
+    gsap.set(root, { opacity: 1 });
+    gsap.set(stage, {
+      scale: 0.98,
+      opacity: 1,
+      width: '100%',
+      height: '100dvh',
+      borderRadius: 0
+    });
+    gsap.set([left, right], { scaleX: 0.02, opacity: 1 });
+    gsap.set(spine, { opacity: 1, width: 10, marginLeft: -5 });
+    gsap.set(seam, { opacity: 0 });
+    gsap.set(seal, { opacity: 0, scale: 0.7 });
+    gsap.set([lineL, lineR], { opacity: 0, height: 0 });
+    gsap.set(black, { scaleX: 0, opacity: 1 });
+    gsap.set(title, { opacity: 0, y: 22, scale: 0.94, filter: 'blur(0px)' });
+    gsap.set([sub, tag].filter(Boolean), { opacity: 0, y: 10 });
+    gsap.set(revealBg, { opacity: 0, scale: 1.08 });
+    if (kanji) kanji.classList.remove('is-filled');
+    if (kanjiFill) gsap.set(kanjiFill, { clipPath: 'inset(100% 0 0 0)' });
+
+    var anim = gsap.timeline({
+      defaults: { ease: 'power2.inOut' },
+      onComplete: function () {
+        root.classList.add('is-done');
+        root.classList.remove('is-active');
+        root.setAttribute('aria-hidden', 'true');
+        if (header) {
+          header.classList.remove('is-transition-hidden');
+          gsap.set(header, { clearProps: 'opacity' });
+        }
+        gsap.set([stage, left, right, title, revealBg, black, spine, seam].filter(Boolean), {
+          clearProps: 'willChange,filter'
+        });
+        setTimeout(function () {
+          root.style.display = 'none';
+        }, 600);
+        if (typeof done === 'function') done();
+      }
+    });
+
+    anim.to(stage, { scale: 1, duration: 0.42, ease: 'power3.out' }, 0);
+    anim.to([left, right], { scaleX: 1, duration: 0.7, ease: 'power3.out' }, 0.08);
+    anim.to(spine, { width: 1, marginLeft: -0.5, duration: 0.45, ease: 'power2.inOut' }, 0.65);
+    anim.to(spine, { opacity: 0, duration: 0.28 }, 0.95);
+    anim.to(seam, { opacity: 1, duration: 0.3 }, 0.85);
+    anim.to(seal, { opacity: 1, scale: 1, duration: 0.55, ease: 'power2.out' }, 0.8);
+    anim.to(lineL, { opacity: 1, height: '58%', duration: 0.85, ease: 'power2.out' }, 1.25);
+    anim.to(lineR, { opacity: 1, height: '58%', duration: 0.85, ease: 'power2.out' }, 1.38);
+    anim.to(lineL, { height: '38%', duration: 0.65, ease: 'power1.inOut' }, 2.15);
+    anim.to(lineR, { height: '46%', duration: 0.65, ease: 'power1.inOut' }, 2.22);
+    anim.to([lineL, lineR, seal], { opacity: 0, duration: 0.4, ease: 'power1.in' }, 2.85);
+    anim.to(seam, { opacity: 0.85, duration: 0.25 }, 3.0);
+    anim.to(black, { scaleX: 1, duration: 0.95, ease: 'power3.inOut' }, 3.25);
+    anim.to([left, right, seam], { opacity: 0, duration: 0.4 }, 3.65);
+    anim.to(title, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power3.out' }, 3.95);
+    if (kanjiFill) {
+      anim.to(kanjiFill, { clipPath: 'inset(0% 0 0 0)', duration: 0.95, ease: 'power2.inOut' }, 4.35);
+    }
+    anim.add(function () {
+      if (kanji) kanji.classList.add('is-filled');
+    }, 5.15);
+    if (sub) anim.to(sub, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 4.85);
+    if (tag) anim.to(tag, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 5.05);
+    anim.to(revealBg, { opacity: 1, scale: 1, duration: 1.15, ease: 'power2.inOut' }, 5.25);
+    anim.to(stage, {
+      scale: 1,
+      duration: 1.0,
+      ease: 'power3.inOut'
+    }, 5.35);
+    anim.to(title, {
+      scale: 1.18,
+      y: -28,
+      opacity: 0,
+      filter: 'blur(10px)',
+      duration: 0.85,
+      ease: 'power3.inOut'
+    }, 5.95);
+    anim.to(black, { opacity: 0, duration: 0.9, ease: 'power2.inOut' }, 6.1);
+    anim.to(root, { opacity: 0, duration: 0.75, ease: 'power2.inOut' }, 6.35);
+    if (header) {
+      anim.to(header, { opacity: 1, duration: 0.55, ease: 'power1.out' }, 6.2);
+    }
+  }
+
+  function start() {
+    playSaiseiPageTransition(function () {
+      if (typeof window.__bmunAfterBook === 'function') window.__bmunAfterBook();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();
+</script>
+
+
+<script>
+/* HNWSD */
+(function () {
+  var header = document.getElementById('site-header') || document.querySelector('.header-container');
+  if (!header) return;
+  var lastY = window.scrollY || 0;
+  var ticking = false;
+  function updateNavVisibility() {
+    ticking = false;
+    if (header.classList.contains('is-transition-hidden')) return;
+    var y = window.scrollY || window.pageYOffset || 0;
+    if (y <= 10) {
+      header.classList.remove('is-nav-hidden');
+    } else if (y > lastY + 4) {
+      header.classList.add('is-nav-hidden');
+    } else if (y < lastY - 4) {
+      header.classList.remove('is-nav-hidden');
+    }
+    lastY = y;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateNavVisibility);
+    }
+  }, { passive: true });
+})();
+</script>
+
+<script src="bmun-nav.js"></script>
+    <script src="bmun-smooth.js"></script>
+    <script src="bmun-text-motion.js"></script>
+</body>
+</html>
+

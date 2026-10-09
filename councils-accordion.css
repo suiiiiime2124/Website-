@@ -1,0 +1,795 @@
+﻿/* Councils â€” full-page expanding panels */
+html.councils-acc-page,
+html.councils-acc-page body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+#council-acc-workspace {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: #a8b9c8;
+  z-index: 1;
+}
+
+/* Same collage as the index hero: one full-page layer, not zoomed per tile */
+#council-acc-workspace > .hero-collage-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #a8b9c8;
+}
+
+#council-acc-workspace > .hero-collage-bg::before {
+  content: '';
+  position: absolute;
+  inset: -28px;
+  background-image: url('hero-images/site-collage-bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  filter: blur(8px) saturate(0.95) brightness(1.02) hue-rotate(4deg);
+  transform: scale(1.08);
+}
+
+#council-acc-workspace > .hero-collage-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, #a8c5dc 0%, rgba(168, 197, 220, 0) 42%),
+    linear-gradient(185deg, rgba(58, 107, 148, 0.48) 0%, rgba(73, 130, 174, 0.40) 38%, rgba(42, 90, 130, 0.52) 100%),
+    radial-gradient(ellipse 70% 55% at 50% 42%, rgba(168, 197, 220, 0.28) 0%, transparent 68%);
+}
+
+.council-acc-viewport {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: clip;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.council-acc-viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.council-acc-track {
+  --cacc-collapsed: 18vw;
+  --cacc-expanded: 46vw;
+  --cacc-gap: 0px;
+  --cacc-radius: 0px;
+  --cacc-ease: cubic-bezier(0.33, 1, 0.28, 1);
+  --cacc-duration: 0.85s;
+  --cacc-open-duration: 1.1s;
+  display: flex;
+  align-items: stretch;
+  gap: var(--cacc-gap);
+  height: 100%;
+  width: max-content;
+  will-change: transform;
+  transition: transform 0.75s var(--cacc-ease);
+}
+
+.council-acc-viewport.is-dragging .council-acc-track {
+  transition: none;
+}
+
+.council-acc-panel {
+  position: relative;
+  flex: 0 0 var(--cacc-collapsed);
+  width: var(--cacc-collapsed);
+  min-width: var(--cacc-collapsed);
+  height: 100%;
+  border-radius: var(--cacc-radius);
+  overflow: hidden;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(18, 24, 32, 0.08);
+  color: #121212;
+  transition:
+    flex-basis var(--cacc-duration) var(--cacc-ease),
+    width var(--cacc-duration) var(--cacc-ease),
+    min-width var(--cacc-duration) var(--cacc-ease),
+    opacity var(--cacc-open-duration) var(--cacc-ease),
+    background-color 0.45s ease,
+    color 0.35s ease,
+    transform 0.45s var(--cacc-ease),
+    box-shadow 0.45s ease;
+}
+
+.council-acc-panel:last-child {
+  border-right: none;
+}
+
+.council-acc-panel.is-active {
+  flex: 0 0 var(--cacc-expanded);
+  width: var(--cacc-expanded);
+  min-width: var(--cacc-expanded);
+  background: transparent;
+  color: #ffffff;
+  border-right-color: transparent;
+  z-index: 2;
+}
+
+/* Full-screen open â€” panel leaves the track and covers the viewport */
+#council-acc-workspace.is-fs-open .council-acc-viewport {
+  cursor: default;
+}
+
+#council-acc-workspace.is-fs-open .council-acc-panel:not(.is-open) {
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+}
+
+#council-acc-workspace.is-fs-open .council-acc-controls {
+  opacity: 0;
+  pointer-events: none;
+}
+
+html.council-fs-open .header-container .register-bubble {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.council-acc-panel.is-open {
+  overflow: hidden;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none;
+  will-change: left, width;
+}
+
+.council-acc-panel.is-open.is-fs-animating .council-acc-photo img {
+  transform: scale(1.05);
+  transition: transform 1.1s cubic-bezier(0.33, 1, 0.28, 1);
+}
+
+.council-acc-panel.is-open.is-fs-closing .council-acc-photo img {
+  transform: scale(1.02);
+  transition: transform 1.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.council-acc-panel.is-open .council-acc-copy {
+  padding-left: clamp(28px, 4vw, 64px);
+  padding-right: clamp(28px, 8vw, 120px);
+  max-width: min(720px, 92vw);
+}
+
+.council-acc-panel.is-open .council-acc-title {
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  max-width: 16ch;
+  white-space: normal;
+}
+
+.council-acc-close {
+  position: absolute;
+  top: clamp(18px, 3vh, 28px);
+  right: clamp(18px, 3vw, 32px);
+  z-index: 40;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(18, 24, 32, 0.35);
+  color: #fff;
+  display: none;
+  place-items: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: auto;
+}
+
+.council-acc-panel.is-open .council-acc-close {
+  display: grid;
+}
+
+.council-acc-close:hover {
+  background: rgba(18, 24, 32, 0.55);
+}
+
+.council-acc-photo {
+  display: none;
+}
+
+.council-acc-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: grayscale(0.25) contrast(1.05) brightness(0.95);
+  opacity: 1;
+  transition: filter 0.65s ease, opacity 0.65s ease, transform 0.85s var(--cacc-ease);
+  transform: scale(1.02);
+}
+
+.council-acc-panel:hover:not(.is-open):not(.is-fs-closing):not(.is-settling),
+.council-acc-panel.is-hot:not(.is-open):not(.is-fs-closing):not(.is-settling) {
+  z-index: 6;
+  transform: translate3d(0, -14px, 0);
+  box-shadow: 0 28px 54px rgba(18, 24, 32, 0.34);
+}
+
+.council-acc-panel.is-fs-closing,
+.council-acc-panel.is-settling {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.council-acc-panel::after {
+  content: none;
+}
+
+.council-acc-panel.is-active .council-acc-photo img {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.council-acc-panel.is-active::after,
+.council-acc-panel.is-hot:not(.is-open)::after {
+  content: none;
+}
+
+.council-acc-panel.is-active:not(.is-open) .council-acc-photo img {
+  transform: scale(1.04) translate3d(var(--cacc-px, 0px), var(--cacc-py, 0px), 0);
+}
+
+/* Portrait tiles crop landscape photos on the sides; wider frames crop top and bottom.
+   Anchor each photo on its subject. object-fit stays cover at every width. */
+.council-acc-panel[data-council="unsc"] .council-acc-photo img {
+  object-position: center 36%;
+}
+
+.council-acc-panel[data-council="uncsw"] .council-acc-photo img {
+  object-position: center 58%;
+}
+
+.council-acc-panel[data-council="fifa"] .council-acc-photo img {
+  object-position: center 55%;
+}
+
+.council-acc-panel[data-council="fia"] .council-acc-photo img {
+  object-position: 66% 60%;
+}
+
+.council-acc-panel[data-council="fcc"] .council-acc-photo img {
+  object-position: center 40%;
+}
+
+.council-acc-panel[data-council="hcc"] .council-acc-photo img {
+  object-position: center 42%;
+}
+
+.council-acc-panel[data-council="covhe"] .council-acc-photo img {
+  object-position: 62% center;
+}
+
+.council-acc-panel[data-council="unicef"] .council-acc-photo img {
+  object-position: center 55%;
+}
+
+.council-acc-panel[data-council="eu"] .council-acc-photo img {
+  object-position: center 38%;
+}
+
+.council-acc-panel[data-council="copuos"] .council-acc-photo img {
+  object-position: 57% 52%;
+}
+
+.council-acc-panel[data-council="unga"] .council-acc-photo img {
+  object-position: center 38%;
+}
+
+.council-acc-panel[data-council="pokemon"] .council-acc-photo img {
+  object-position: 38% 58%;
+}
+
+.council-acc-panel[data-council="who"] .council-acc-photo img {
+  object-position: center 46%;
+}
+
+.council-acc-panel[data-council="loksabha"] .council-acc-photo img {
+  object-position: center 42%;
+}
+
+.council-acc-open-cue {
+  position: static;
+  display: none;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 4px 0 0;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 9999px;
+  background: rgba(18, 24, 32, 0.28);
+  color: #fff;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: opacity 0.45s ease, transform 0.55s var(--cacc-ease);
+}
+
+.council-acc-panel.is-active:not(.is-open) .council-acc-open-cue {
+  display: inline-flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.council-acc-open-cue i {
+  font-size: 0.65rem;
+  opacity: 0.85;
+}
+
+/* Half-clipped emblem on the right edge of each tile */
+.council-acc-logo {
+  position: absolute;
+  top: 12%;
+  right: 0;
+  left: auto;
+  z-index: 4;
+  width: min(220px, 92%);
+  height: auto;
+  max-height: 42%;
+  transform: translateX(50%);
+  object-fit: contain;
+  object-position: center center;
+  pointer-events: none;
+  opacity: 0.95;
+  filter: drop-shadow(0 8px 24px rgba(18, 24, 32, 0.18));
+  transition:
+    width 0.85s var(--cacc-ease),
+    max-height 0.85s var(--cacc-ease),
+    top 0.5s ease,
+    opacity 0.45s ease,
+    transform 0.85s var(--cacc-ease),
+    filter 0.45s ease;
+}
+
+.council-acc-panel.is-active .council-acc-logo {
+  top: 16%;
+  width: min(280px, 48%);
+  max-height: 38%;
+  transform: translateX(50%) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+  opacity: 0.85;
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.25)) brightness(1.05);
+}
+
+.council-acc-logo.is-rotated-90 {
+  transform: translateX(50%) rotate(90deg) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+  transform-origin: center center;
+}
+
+.council-acc-panel.is-active .council-acc-logo.is-rotated-90 {
+  transform: translateX(50%) rotate(90deg) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+}
+
+.council-acc-logo.is-rotated-neg90 {
+  transform: translateX(50%) rotate(-90deg) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+  transform-origin: center center;
+}
+
+.council-acc-panel.is-active .council-acc-logo.is-rotated-neg90 {
+  transform: translateX(50%) rotate(-90deg) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+}
+
+/* FIFA / UNICEF â€” nudge half-clip slightly left + down */
+.council-acc-panel[data-council="fifa"] .council-acc-logo,
+.council-acc-panel[data-council="unicef"] .council-acc-logo {
+  top: 22%;
+  transform: translateX(38%) rotate(-90deg) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+}
+
+.council-acc-panel[data-council="fifa"].is-active .council-acc-logo,
+.council-acc-panel[data-council="unicef"].is-active .council-acc-logo {
+  top: 24%;
+  transform: translateX(38%) rotate(-90deg) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+}
+
+/* COPUOS â€” same flip as FIFA, larger + lower */
+.council-acc-panel[data-council="copuos"] .council-acc-logo {
+  top: 28%;
+  width: min(380px, 150%);
+  max-height: 62%;
+  transform: translateX(38%) rotate(-90deg) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+}
+
+.council-acc-panel[data-council="copuos"].is-active .council-acc-logo {
+  top: 30%;
+  width: min(420px, 72%);
+  max-height: 56%;
+  transform: translateX(38%) rotate(-90deg) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+}
+
+.council-acc-panel[data-council="loksabha"] .council-acc-logo {
+  width: auto;
+  height: min(122px, 18%);
+  max-height: none;
+  filter: invert(1) drop-shadow(0 8px 24px rgba(18, 24, 32, 0.18));
+}
+
+.council-acc-panel[data-council="loksabha"].is-active .council-acc-logo {
+  height: min(144px, 16%);
+  filter: invert(1) drop-shadow(0 10px 28px rgba(0, 0, 0, 0.25));
+}
+
+/* WHO — same size and half-clip placement as UNSC */
+.council-acc-panel[data-council="who"] .council-acc-logo {
+  top: 12%;
+  width: min(220px, 92%);
+  max-height: 42%;
+  transform: translateX(50%);
+}
+
+.council-acc-panel[data-council="who"].is-active .council-acc-logo {
+  top: 16%;
+  width: min(280px, 48%);
+  max-height: 38%;
+  transform: translateX(50%) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.25));
+}
+
+/* FIA — official globe and gear, wide mark kept readable */
+.council-acc-panel[data-council="fia"] .council-acc-logo {
+  top: 16%;
+  width: min(200px, 84%);
+  max-height: 34%;
+  transform: translateX(18%);
+}
+
+.council-acc-panel[data-council="fia"].is-active .council-acc-logo {
+  top: 18%;
+  width: min(240px, 38%);
+  max-height: 30%;
+  transform: translateX(18%) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+}
+
+.council-acc-logo.is-rotated-180 {
+  transform: translateX(50%) rotate(180deg) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+  transform-origin: center center;
+}
+
+.council-acc-panel.is-active .council-acc-logo.is-rotated-180 {
+  transform: translateX(50%) rotate(180deg) translate3d(var(--cacc-lx, 0px), var(--cacc-ly, 0px), 0);
+}
+
+.council-acc-index {
+  position: absolute;
+  top: clamp(18px, 3vh, 28px);
+  left: clamp(16px, 2vw, 28px);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.council-acc-index::before {
+  content: '';
+  width: 16px;
+  height: 2px;
+  background: #3aa8c7;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+.council-acc-panel.is-active .council-acc-index::before {
+  background: #7ed7ef;
+}
+
+.council-acc-copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 8px;
+  padding: clamp(20px, 3.5vh, 36px) clamp(16px, 2.2vw, 32px) clamp(24px, 4vh, 42px);
+  pointer-events: none;
+}
+
+.council-acc-title {
+  margin: 0;
+  font-family: 'Eulogy Demo Bold', 'Eulogy Demo', 'Anton', serif;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 1.6vw, 1.45rem);
+  letter-spacing: 0.06em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: inherit;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.council-acc-panel.is-active .council-acc-title {
+  font-size: clamp(2.2rem, 4.6vw, 3.8rem);
+  letter-spacing: 0.02em;
+  max-width: 14ch;
+}
+
+.council-acc-meta {
+  display: none;
+  margin: 0;
+  max-width: min(34ch, 90%);
+}
+
+.council-acc-panel.is-active .council-acc-meta {
+  display: block;
+}
+
+.council-acc-fullname {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(11px, 1.05vw, 13px);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.council-acc-level,
+.council-acc-desc {
+  display: none !important;
+}
+
+.council-acc-controls {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.council-acc-controls > * {
+  pointer-events: auto;
+}
+
+.council-acc-arrow {
+  position: absolute;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  transform: translateY(-50%);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.council-acc-arrow[data-council-acc-prev] {
+  left: clamp(12px, 2vw, 28px);
+}
+
+.council-acc-arrow[data-council-acc-next] {
+  right: clamp(12px, 2vw, 28px);
+}
+
+.council-acc-arrow:hover {
+  transform: translateY(-50%) scale(1.06);
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.65);
+}
+
+.council-acc-dots {
+  position: absolute;
+  right: clamp(14px, 2vw, 24px);
+  bottom: clamp(16px, 3vh, 28px);
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  max-width: min(48vw, 380px);
+  overflow: auto;
+  padding: 4px;
+  scrollbar-width: none;
+}
+
+.council-acc-dots::-webkit-scrollbar {
+  display: none;
+}
+
+.council-acc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  border: none;
+  padding: 0;
+  background: rgba(18, 24, 32, 0.28);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, width 0.2s ease;
+}
+
+.council-acc-dot.is-active {
+  width: 20px;
+  background: #3a6b94;
+}
+
+.header-container {
+  z-index: 1000;
+}
+
+@media (max-width: 900px) {
+  .council-acc-track {
+    --cacc-collapsed: 22vw;
+    --cacc-expanded: 56vw;
+  }
+
+  .council-acc-arrow {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .council-acc-track {
+    --cacc-collapsed: 16vw;
+    --cacc-expanded: 68vw;
+  }
+
+  .council-acc-panel:not(.is-active) .council-acc-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 0.95rem;
+  }
+
+  /* Mobile only â€” logos centered in the tile */
+  .council-acc-logo,
+  .council-acc-panel.is-active .council-acc-logo,
+  .council-acc-panel[data-council="fifa"] .council-acc-logo,
+  .council-acc-panel[data-council="unicef"] .council-acc-logo,
+  .council-acc-panel[data-council="fifa"].is-active .council-acc-logo,
+  .council-acc-panel[data-council="unicef"].is-active .council-acc-logo,
+  .council-acc-panel[data-council="copuos"] .council-acc-logo,
+  .council-acc-panel[data-council="copuos"].is-active .council-acc-logo {
+    top: 42%;
+    left: 50%;
+    right: auto;
+    width: min(160px, 58%);
+    max-height: 34%;
+    transform: translate(-50%, -50%);
+    opacity: 0.9;
+  }
+
+  .council-acc-logo.is-rotated-90,
+  .council-acc-panel.is-active .council-acc-logo.is-rotated-90 {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .council-acc-logo.is-rotated-neg90,
+  .council-acc-panel.is-active .council-acc-logo.is-rotated-neg90,
+  .council-acc-panel[data-council="fifa"] .council-acc-logo,
+  .council-acc-panel[data-council="unicef"] .council-acc-logo,
+  .council-acc-panel[data-council="fifa"].is-active .council-acc-logo,
+  .council-acc-panel[data-council="unicef"].is-active .council-acc-logo,
+  .council-acc-panel[data-council="copuos"] .council-acc-logo,
+  .council-acc-panel[data-council="copuos"].is-active .council-acc-logo {
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+
+  .council-acc-logo.is-rotated-180,
+  .council-acc-panel.is-active .council-acc-logo.is-rotated-180 {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+
+  .council-acc-panel[data-council="copuos"] .council-acc-logo,
+  .council-acc-panel[data-council="copuos"].is-active .council-acc-logo {
+    width: min(200px, 70%);
+    max-height: 40%;
+  }
+
+  .council-acc-panel[data-council="loksabha"] .council-acc-logo,
+  .council-acc-panel[data-council="loksabha"].is-active .council-acc-logo {
+    width: auto;
+    height: min(112px, 26%);
+    max-height: 28%;
+    transform: translate(-50%, -50%);
+  }
+
+  .council-acc-panel[data-council="who"] .council-acc-logo {
+    top: 18%;
+    width: min(112px, 48%);
+    height: auto;
+    max-height: 26%;
+    transform: translate(-50%, -50%);
+  }
+
+  .council-acc-panel[data-council="who"].is-active .council-acc-logo {
+    top: 20%;
+    width: min(112px, 48%);
+    height: auto;
+    max-height: 26%;
+    transform: translate(-50%, -50%);
+  }
+
+  .council-acc-panel[data-council="fia"] .council-acc-logo,
+  .council-acc-panel[data-council="fia"].is-active .council-acc-logo {
+    width: min(140px, 62%);
+    height: auto;
+    max-height: 26%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Mobile only â€” title / full name / open stacked further down together */
+  .council-acc-copy {
+    bottom: 0;
+    padding:
+      clamp(12px, 2vh, 18px)
+      clamp(12px, 3vw, 20px)
+      clamp(56px, 10vh, 88px);
+    gap: 6px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .council-acc-panel.is-active .council-acc-title {
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .council-acc-panel.is-active .council-acc-meta {
+    max-width: 92%;
+  }
+
+  .council-acc-fullname {
+    text-align: center;
+    font-size: clamp(10px, 2.8vw, 12px);
+  }
+
+  .council-acc-panel.is-active:not(.is-open) .council-acc-open-cue {
+    margin-top: 8px;
+  }
+
+  .council-acc-index {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .council-acc-track,
+  .council-acc-panel,
+  .council-acc-photo img {
+    transition: none !important;
+  }
+}

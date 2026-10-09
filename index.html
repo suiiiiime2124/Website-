@@ -1,0 +1,1781 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Official website for BMUN, Bhavans Model United Nations in Bahrain. Discover our councils, register for the conference, and get the latest updates.">
+    <meta name="keywords" content="BMUN, Bhavans MUN, Bhavans Bahrain MUN, Model United Nations, Bahrain MUN, BMUN 2026">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" href="favicon.png?v=4" type="image/png">
+    <title>Home | BMUN'26</title>
+    <link rel="preload" as="image" href="hero-images/site-collage-bg.jpg">
+    <link rel="preload" as="image" href="bmunlogo.png">
+    
+    <!-- FI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Noto+Sans+JP:wght@700&family=Anton&family=Anton+SC&family=Bebas+Neue&family=Lexend:wght@300;400;500;600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&display=swap" rel="stylesheet">
+    <style>
+    @font-face {
+        font-family: 'Eulogy Demo Bold';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('https://db.onlinewebfonts.com/t/83b181786e5fe13987fce5a4fda3a397.woff2') format('woff2'),
+             url('https://db.onlinewebfonts.com/t/83b181786e5fe13987fce5a4fda3a397.woff') format('woff'),
+             url('https://db.onlinewebfonts.com/t/83b181786e5fe13987fce5a4fda3a397.ttf') format('truetype');
+    }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <style>
+/* N — glass header matching frosted hero screenshot */
+.header-container {
+  position: fixed;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0 4%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  background: transparent;
+  min-height: 60px;
+}
+
+.header-container.is-nav-hidden {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.brand-left,
+.brand-center {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 10px;
+  box-shadow: none;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.brand-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.25));
+}
+
+.nav-right-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 0;
+  pointer-events: none;
+}
+
+.nav-pill-right {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 9999px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+  height: 60px;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 14px;
+  gap: 0;
+  color: rgba(255, 255, 255, 0.92);
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: gap 0.35s cubic-bezier(0.25, 1, 0.5, 1), padding 0.35s cubic-bezier(0.25, 1, 0.5, 1), color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  background: transparent;
+  border: 1px solid transparent;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+.nav-item.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.20);
+  border-color: rgba(255, 255, 255, 0.30);
+}
+
+.nav-item:hover {
+  color: #fff;
+  padding: 0 18px;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.40);
+}
+
+.nav-item i,
+.nav-item .material-symbols-outlined,
+.nav-item .nav-ico {
+  position: relative;
+  z-index: 2;
+  font-family: 'Material Symbols Outlined', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 22px;
+  line-height: 1;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nav-text {
+  position: relative;
+  z-index: 2;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  max-width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: max-width 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease;
+}
+
+.nav-item:hover .nav-text {
+  max-width: 140px;
+  opacity: 1;
+}
+
+.nav-item.active .nav-text {
+  max-width: 0;
+  opacity: 0;
+}
+
+.nav-item.active:hover .nav-text {
+  max-width: 140px;
+  opacity: 1;
+}
+
+/* RB — solid mid-blue REGISTER (screenshot) */
+.register-bubble {
+  pointer-events: auto;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-shrink: 0;
+  background: linear-gradient(115deg, #4982ae 0%, #6fa0c4 50%, #a8c5dc 100%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 9999px;
+  padding: 6px 30px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(18, 24, 32, 0.28);
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+  z-index: 5;
+}
+
+.register-bubble::before {
+  content: none;
+  display: none;
+}
+
+.register-bubble:hover {
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 16px 34px rgba(18, 24, 32, 0.32), 0 0 24px rgba(168, 197, 220, 0.45);
+  transform: translateY(calc(-50% - 3px)) scale(1.03);
+  animation: none;
+}
+
+.register-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #ffffff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+}
+
+.register-content i {
+  margin-left: 2px;
+  transition: transform 0.2s ease;
+}
+
+.register-bubble:hover .register-content i {
+  transform: translateX(5px);
+}
+
+/* HROB — no infinite pulse (lag) */
+.hero-btn:hover,
+.hero-action-btn:hover,
+.contact-cta-btn:hover,
+.submit-btn:hover,
+.clean-back-btn:hover,
+.arrow-btn:hover,
+.action-bubble-link:hover,
+button:not([disabled]):hover {
+  animation: none;
+}
+
+
+
+/* NB */
+@media (max-width: 1024px) {
+  .header-container {
+    top: 12px;
+    padding: 0 16px;
+  }
+
+  .register-bubble {
+    padding: 6px 20px;
+  }
+}
+
+@media (max-width: 720px) {
+  .header-container {
+    top: 10px;
+    padding: 0 12px;
+    justify-content: space-between;
+  }
+
+  .nav-item {
+    height: 36px;
+    padding: 0 10px;
+  }
+
+  .nav-item:hover {
+    padding: 0 12px;
+  }
+
+  .nav-item i,
+  .nav-item .nav-ico {
+    font-size: 20px;
+  }
+
+  .register-bubble {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    padding: 6px 20px;
+    height: 48px;
+  }
+
+  .register-bubble:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  .register-content {
+    font-size: 1.2rem;
+    gap: 10px;
+  }
+}
+
+/* F */
+.bmun-footer {
+  padding: 80px 0 40px;
+  background: #3a6b94;
+  border-top: 1px solid rgba(168, 197, 220, 0.35);
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.bmun-footer .footer-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.bmun-footer .footer-glass-panel {
+  background: #121820;
+  border: 1px solid rgba(168, 197, 220, 0.35);
+  border-radius: 20px;
+  padding: 50px 60px;
+  margin-bottom: 24px;
+}
+
+.bmun-footer .footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 60px;
+}
+
+.bmun-footer .footer-column h4 {
+  font-family: 'Anton', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #e0e8ee;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 24px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(168, 197, 220, 0.35);
+}
+
+.bmun-footer .footer-nav-links {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.bmun-footer .footer-nav-links a {
+  font-family: 'Lato', sans-serif;
+  color: rgba(224, 232, 238, 0.78);
+  font-size: 14px;
+  font-weight: 300;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.bmun-footer .footer-nav-links a:hover {
+  color: #4982ae;
+}
+
+.bmun-footer .footer-location-title {
+  font-family: 'Lato', sans-serif;
+  color: #e0e8ee;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.bmun-footer .footer-location-text {
+  font-family: 'Lato', sans-serif;
+  color: rgba(224, 232, 238, 0.78);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.bmun-footer .footer-contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.bmun-footer .footer-contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(224, 232, 238, 0.78);
+}
+
+.bmun-footer .footer-contact-list i {
+  color: #4982ae;
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.bmun-footer .footer-contact-list a {
+  font-family: 'Lato', sans-serif;
+  color: rgba(224, 232, 238, 0.78);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.bmun-footer .footer-contact-list a:hover {
+  color: #4982ae;
+}
+
+.bmun-footer .footer-bottom-panel {
+  background: #121820;
+  border: 1px solid rgba(168, 197, 220, 0.35);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.bmun-footer .footer-brand-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #e0e8ee;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.bmun-footer .footer-power-text {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(168, 197, 220, 0.85);
+  margin: 0;
+}
+
+.bmun-footer .footer-copyright {
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(224, 232, 238, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0;
+}
+
+/* FB */
+@media (max-width: 990px) {
+  .bmun-footer {
+    padding: 60px 0 32px;
+  }
+
+  .bmun-footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .bmun-footer .footer-glass-panel {
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 520px) {
+  .bmun-footer .footer-container {
+    padding: 0 16px;
+  }
+
+  .bmun-footer .footer-glass-panel {
+    padding: 28px 20px;
+    border-radius: 16px;
+  }
+
+  .bmun-footer .footer-bottom-panel {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  .bmun-footer .footer-nav-links {
+    grid-template-columns: 1fr;
+  }
+
+  .bmun-footer .footer-column h4,
+  .bmun-footer .footer-brand-title {
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .register-bubble {
+    animation: none;
+  }
+}
+
+
+        :root {
+            --royal-dark: #e0e8ee;
+            --accent-bronze: #3a6b94;
+            --mid-brown: #4982ae;
+            --royal-gold: #a8c5dc;
+            --parchment: #e0e8ee;
+            --ink: #121820;
+            --ios-blur: blur(25px);
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--royal-dark);
+            color: var(--ink);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Clean stable hero — Eulogy Demo Bold wordmark */
+        .hero-brand-title {
+            font-family: 'Eulogy Demo Bold', 'Eulogy Demo', 'Anton', serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: clamp(72px, 14vw, 148px);
+            line-height: 1.05;
+            letter-spacing: 0.01em;
+            text-align: center;
+            margin: -0.32em auto 0;
+            width: 100%;
+            max-width: 980px;
+            color: #ffffff;
+            -webkit-text-fill-color: #ffffff;
+            background: none;
+            animation: none;
+            text-transform: uppercase;
+            text-shadow:
+                0 2px 4px rgba(18, 24, 32, 0.4),
+                0 8px 28px rgba(18, 24, 32, 0.35);
+            filter: drop-shadow(0 2px 12px rgba(18, 24, 32, 0.22));
+            overflow: visible;
+            padding: 0.08em 0 0.06em;
+        }
+
+        .hero-brand-subtext {
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            text-align: center;
+            color: rgba(224, 232, 238, 0.88);
+            margin: 0.2rem auto 0;
+            max-width: 36ch;
+            line-height: 1.45;
+            text-shadow: 0 2px 12px rgba(18, 24, 32, 0.35);
+        }
+
+        .hero-crest-white {
+            width: 240px;
+            height: auto;
+            margin-bottom: -0.15rem;
+            filter:
+                brightness(0) invert(1)
+                drop-shadow(0 6px 18px rgba(18, 24, 32, 0.35))
+                drop-shadow(0 0 24px rgba(255, 255, 255, 0.18));
+        }
+
+        .heading-font {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-brand-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-scroll-cue {
+            position: relative;
+            left: auto;
+            bottom: auto;
+            transform: none;
+            z-index: 25;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: clamp(28px, 5vh, 48px);
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 20px;
+            line-height: 1;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .hero-scroll-cue i {
+            display: inline-block;
+            animation: heroScrollBounce 1.6s ease-in-out infinite;
+        }
+        .hero-scroll-cue:hover { color: #fff; }
+        @keyframes heroScrollBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* —— Static aviation trails (no playback) —— */
+        .hero-flight-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 8;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .hero-flight-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .hero-flight-path {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.75);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 5 9;
+        }
+
+        .hero-flight-path.is-right {
+            opacity: 0.9;
+        }
+
+        .hero-plane {
+            fill: rgba(255, 255, 255, 0.92);
+        }
+
+        /* Animated wave divider (hero → journey) */
+        .section-divider {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            z-index: 6;
+            pointer-events: none;
+            overflow: visible;
+            transform: translateY(-72%);
+        }
+
+        .section-divider .editorial {
+            display: block;
+            width: 100%;
+            height: 60px;
+            max-height: 60px;
+            margin: 0;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        .parallax1 > use { animation: move-forever1 10s linear infinite; }
+        .parallax1 > use:nth-child(1) { animation-delay: -2s; }
+        .parallax2 > use { animation: move-forever2 8s linear infinite; }
+        .parallax2 > use:nth-child(1) { animation-delay: -2s; }
+        .parallax3 > use { animation: move-forever3 6s linear infinite; }
+        .parallax3 > use:nth-child(1) { animation-delay: -2s; }
+        .parallax4 > use { animation: move-forever4 4s linear infinite; }
+        .parallax4 > use:nth-child(1) { animation-delay: -2s; }
+        @keyframes move-forever1 {
+            0% { transform: translate(85px, 0%); }
+            100% { transform: translate(-90px, 0%); }
+        }
+        @keyframes move-forever2 {
+            0% { transform: translate(-90px, 0%); }
+            100% { transform: translate(85px, 0%); }
+        }
+        @keyframes move-forever3 {
+            0% { transform: translate(85px, 0%); }
+            100% { transform: translate(-90px, 0%); }
+        }
+        @keyframes move-forever4 {
+            0% { transform: translate(-90px, 0%); }
+            100% { transform: translate(85px, 0%); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .parallax1 > use,
+            .parallax2 > use,
+            .parallax3 > use,
+            .parallax4 > use {
+                animation: none;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .hero-flight-path { stroke-width: 1.35; }
+            .hero-scroll-cue {
+                margin-top: clamp(22px, 4vh, 36px);
+            }
+        }
+
+        /* One composition: frosted event photo-wall (matches site hero) */
+        .hero-collage-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            background-color: #a8b9c8;
+            border: none;
+            box-shadow: none;
+            outline: none;
+        }
+
+        .hero-collage-bg::before {
+            content: '';
+            position: absolute;
+            inset: -28px;
+            background-image: url('hero-images/site-collage-bg.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            /* Frosted collage + slight cool cast */
+            filter: blur(8px) saturate(0.95) brightness(1.02) hue-rotate(4deg);
+            transform: scale(1.08);
+        }
+
+        /* Soft blue wash — lighter mist at bottom (toned down) */
+        .hero-collage-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(to top, #a8c5dc 0%, rgba(168, 197, 220, 0) 42%),
+                linear-gradient(185deg, rgba(58, 107, 148, 0.48) 0%, rgba(73, 130, 174, 0.40) 38%, rgba(42, 90, 130, 0.52) 100%),
+                radial-gradient(ellipse 70% 55% at 50% 42%, rgba(168, 197, 220, 0.28) 0%, transparent 68%);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-collage-bg::before {
+                filter: blur(8px) saturate(0.95) brightness(1.02);
+                transform: scale(1.08);
+            }
+        }
+
+/* BTS */
+.bmun-page-transition {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  background: #121820;
+  overflow: hidden;
+}
+.bmun-page-transition.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.bmun-page-transition.is-done {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+.bpt-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 28% 18%, rgba(73, 130, 174, 0.35), transparent 52%),
+    radial-gradient(ellipse at 78% 72%, rgba(58, 107, 148, 0.55), transparent 48%),
+    linear-gradient(155deg, #3a6b94 0%, #121820 48%, #3a6b94 100%);
+  transform: scale(1.03);
+}
+.bpt-stage {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  box-shadow: none;
+  will-change: transform;
+  border-radius: 0;
+}
+.bpt-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: #e0e8ee;
+  box-shadow: inset 0 0 40px rgba(168, 197, 220, 0.22);
+  will-change: transform, opacity;
+  transform: scaleX(0.02);
+}
+.bpt-panel-left { left: 0; transform-origin: right center; }
+.bpt-panel-right { right: 0; transform-origin: left center; }
+.bpt-spine {
+  position: absolute;
+  top: 0; bottom: 0; left: 50%;
+  width: 10px; margin-left: -5px;
+  background: #121820; z-index: 4; opacity: 1;
+}
+.bpt-stitch {
+  width: 18px; height: 1.5px; background: #3a6b94;
+  position: absolute; left: 50%;
+}
+.bpt-stitch.is-left { transform: translateX(calc(-100% - 6px)); }
+.bpt-stitch.is-right { transform: translateX(6px); }
+.bpt-seam {
+  position: absolute; top: 0; bottom: 0; left: 50%;
+  width: 1px; margin-left: -0.5px;
+  background: rgba(73, 130, 174, 0.55); z-index: 5; opacity: 0;
+}
+.bpt-seal {
+  position: absolute; top: 50%; left: 50%;
+  width: 84px; height: 84px; margin: -42px 0 0 -42px;
+  border: 1.5px solid #4982ae; border-radius: 50%;
+  background: #121820; z-index: 8;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: scale(0.85);
+  box-shadow: 0 0 22px rgba(73, 130, 174, 0.28);
+}
+.bpt-seal img {
+  width: 48px; height: 48px; object-fit: contain;
+  filter: brightness(0) invert(1) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.25));
+}
+.bpt-line { position: absolute; width: 2px; background: #121820; z-index: 6; opacity: 0; }
+.bpt-line-l { left: 10%; bottom: 0; height: 0; transform-origin: bottom center; }
+.bpt-line-r { right: 10%; top: 0; height: 0; transform-origin: top center; }
+.bpt-black {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 100%;
+  background: #121820; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  overflow: hidden; transform: scaleX(0); transform-origin: center center;
+  will-change: transform, opacity;
+}
+.bpt-title-block {
+  text-align: center; color: rgba(224, 232, 238, 0.95);
+  opacity: 0; transform: translateY(18px) scale(0.96);
+  z-index: 2; position: relative; padding: 0 1.25rem;
+  max-width: min(92vw, 44rem); will-change: transform, opacity, filter;
+}
+.bpt-kanji {
+  font-family: 'Anton SC', 'Anton', sans-serif;
+  font-size: clamp(2.8rem, 8.5vw, 6rem);
+  letter-spacing: 0.01em; line-height: 1; font-weight: 400;
+  position: relative; display: inline-block; color: transparent;
+  -webkit-text-stroke: 1.5px rgba(168, 197, 220, 0.92);
+}
+.bpt-kanji-fill {
+  position: absolute; inset: 0; color: #e0e8ee;
+  -webkit-text-stroke: 0 transparent;
+  clip-path: inset(100% 0 0 0); pointer-events: none;
+}
+.bpt-kanji.is-filled { color: #e0e8ee; -webkit-text-stroke: 0 transparent; }
+.bpt-sub {
+  font-family: 'Oswald', 'Bebas Neue', sans-serif;
+  font-size: clamp(1.35rem, 3.8vw, 2.35rem);
+  letter-spacing: 0.28em; margin-top: 0.85rem; font-weight: 500;
+  color: rgba(224, 232, 238, 0.92); line-height: 1.15; text-transform: uppercase;
+}
+.bpt-tag {
+  font-family: 'Oswald', 'Bebas Neue', sans-serif;
+  font-size: clamp(0.62rem, 1.3vw, 0.8rem);
+  letter-spacing: 0.42em; margin-top: 0.85rem;
+  color: rgba(73, 130, 174, 0.85); text-transform: uppercase;
+}
+.bpt-reveal-bg {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.52)),
+    url('hero-images/un-general-assembly.jpg') center / cover no-repeat;
+  opacity: 0; z-index: 1; transform: scale(1.06);
+  will-change: opacity, transform;
+}
+.header-container.is-transition-hidden {
+  opacity: 0; pointer-events: none; transform: translateY(-20px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+@media (max-width: 700px) {
+  .bpt-stage { width: 100vw; height: 100dvh; }
+  .bpt-kanji { font-size: clamp(2rem, 11vw, 3.4rem); }
+  .bpt-sub { font-size: clamp(1.05rem, 5.5vw, 1.6rem); letter-spacing: 0.18em; }
+  .bpt-seal { width: 68px; height: 68px; margin: -34px 0 0 -34px; }
+  .bpt-seal img { width: 40px; height: 40px; }
+}
+
+        /* Theme poster styles removed with theme section */
+
+        /* —— Your Journey at BMUN — light textured bento —— */
+        .journey-bento {
+            position: relative;
+            margin-top: -2px;
+            padding: clamp(72px, 10vw, 120px) 0;
+            background-color: #cfe0ee;
+            background-image: linear-gradient(90deg,
+                #e8f3f9 0%,
+                #d4e6f2 18%,
+                #b7d3e6 38%,
+                #a8c5dc 52%,
+                #bcd6e8 72%,
+                #d9ebf5 88%,
+                #eef6fb 100%
+            );
+            overflow: visible;
+            border: none;
+            box-shadow: none;
+            outline: none;
+        }
+
+        .journey-bento::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.18;
+            background-image:
+                linear-gradient(rgba(90, 130, 165, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(90, 130, 165, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            /* hide any 1px grid hairline at the very top edge */
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 8px);
+            mask-image: linear-gradient(to bottom, transparent 0, #000 8px);
+        }
+
+        /* Matte paper grain over the blue washes */
+        .journey-bento::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.22;
+            mix-blend-mode: soft-light;
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+            background-size: 180px 180px;
+        }
+
+        .journey-flight-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .journey-flight-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .journey-flight-path {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.88);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 6 11;
+            filter: drop-shadow(0 1px 2px rgba(58, 107, 148, 0.18));
+        }
+
+        .journey-plane {
+            fill: rgba(255, 255, 255, 0.95);
+            filter: drop-shadow(0 1px 2px rgba(58, 107, 148, 0.2));
+        }
+
+        .journey-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .journey-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            letter-spacing: 0.02em;
+            line-height: 0.95;
+            color: #121820;
+            margin: 0 auto clamp(32px, 5vw, 56px);
+            max-width: 16ch;
+            text-transform: uppercase;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .journey-card {
+            position: relative;
+            display: flex;
+            align-items: stretch;
+            justify-content: flex-start;
+            gap: 20px;
+            padding: clamp(28px, 4vw, 44px);
+            border-radius: 28px;
+            min-height: 280px;
+            background-color: #fafcfe;
+            background-image:
+                linear-gradient(155deg, rgba(255, 255, 255, 0.92) 0%, rgba(232, 240, 248, 0.88) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.04'/%3E%3C/svg%3E");
+            border: 1px solid rgba(168, 197, 220, 0.55);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                0 12px 32px rgba(58, 107, 148, 0.08);
+            overflow: hidden;
+            transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .journey-card::before {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            right: -30px;
+            bottom: -40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(168, 197, 220, 0.35) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .journey-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: radial-gradient(ellipse 65% 50% at 100% 0%, rgba(168, 197, 220, 0.22), transparent 58%);
+            opacity: 0.7;
+        }
+
+        .journey-card:hover {
+            border-color: rgba(73, 130, 174, 0.55);
+            transform: translateY(-2px);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 1),
+                0 18px 40px rgba(58, 107, 148, 0.12);
+        }
+
+        .journey-card--sm {
+            grid-column: span 1;
+        }
+
+        .journey-card--lg {
+            grid-column: span 2;
+        }
+
+        .journey-card-body {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 14px;
+            min-width: 0;
+            padding-right: clamp(96px, 14vw, 180px);
+            text-align: left !important;
+            align-items: flex-start !important;
+        }
+
+        .journey-tag {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            padding: 7px 14px 8px;
+            border-radius: 9999px;
+            border: 1px solid rgba(73, 130, 174, 0.3);
+            background: rgba(255, 255, 255, 0.94);
+            color: #2f6892;
+            font-family: 'Anton', sans-serif;
+            font-size: 0.74rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            align-self: flex-start;
+        }
+
+        .journey-tag::before {
+            content: '← ';
+            opacity: 0.65;
+        }
+
+        .journey-label {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2rem, 4.8vw, 3.8rem);
+            letter-spacing: 0.02em;
+            line-height: 0.94;
+            color: #121820;
+            display: block;
+            width: 100%;
+            text-align: left !important;
+            margin: 0;
+            max-width: 12ch;
+            text-transform: uppercase;
+        }
+
+        .journey-icon {
+            position: absolute;
+            right: clamp(28px, 5vw, 72px);
+            top: 50%;
+            transform: translateY(-50%) rotate(-8deg);
+            color: rgba(47, 104, 146, 0.92);
+            line-height: 1;
+            z-index: 1;
+        }
+
+        .journey-icon--low {
+            top: auto;
+            bottom: clamp(10px, 1.8vw, 18px);
+            right: clamp(12px, 2.2vw, 28px);
+            transform: rotate(-8deg);
+        }
+
+        .journey-icon .material-symbols-outlined {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+        }
+
+        .journey-num {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            z-index: 2;
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            line-height: 1;
+            color: rgba(58, 107, 148, 0.14);
+            pointer-events: none;
+        }
+
+        .journey-card--feature {
+            min-height: 320px;
+        }
+
+        .journey-card--feature .journey-label {
+            font-size: clamp(2.2rem, 5.2vw, 4.3rem);
+            max-width: 16ch;
+            color: #121820;
+        }
+
+        @media (max-width: 900px) {
+            .journey-grid {
+                grid-template-columns: 1fr;
+            }
+            .journey-card--sm,
+            .journey-card--lg {
+                grid-column: span 1;
+            }
+            .journey-card {
+                min-height: 240px;
+            }
+            .journey-card-body {
+                width: 100%;
+                text-align: left;
+                align-items: flex-start;
+            }
+            .journey-label {
+                max-width: 18ch;
+            }
+            .journey-icon {
+                position: static;
+                transform: none;
+                margin: 8px auto 0;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .journey-title {
+                max-width: none;
+            }
+        }
+
+        /* PLB */
+        .interactive-glass-tile {
+            background: rgba(224, 232, 238, 0.72);
+            border: 1px solid rgba(168, 197, 220, 0.45);
+            border-radius: 24px;
+            box-shadow: 0 16px 36px rgba(58, 107, 148, 0.08);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .interactive-glass-tile:hover {
+            border-color: rgba(73, 130, 174, 0.75);
+            box-shadow: 0 22px 48px rgba(73, 130, 174, 0.22);
+        }
+
+        /* PLM */
+        @media (max-width: 720px) {
+            #home h1, #home .hero-brand-title { font-size: clamp(56px, 15vw, 96px); }
+            #home .heading-font.text-2xl { font-size: 1.15rem; }
+        }
+        @media (max-height: 700px) {
+            #home h1, #home .hero-brand-title { font-size: clamp(52px, 12vw, 100px); }
+        }
+
+        @media (max-height: 700px) {
+            #home { padding-top: 7rem; }
+        }
+
+    
+/* mobile burger menu (phones only) */
+.nav-burger { display: none; }
+@media (max-width: 720px) {
+  .header-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+  }
+  .brand-left { width: auto; justify-content: flex-start; margin: 0; }
+  .nav-burger {
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 46px;
+    height: 46px;
+    margin-left: auto;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 9999px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    cursor: pointer;
+  }
+  .nav-burger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .header-container.menu-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .header-container.menu-open .nav-burger span:nth-child(2) { opacity: 0; }
+  .header-container.menu-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-right-wrapper {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 12px;
+    right: 12px;
+    width: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  }
+  .header-container.menu-open .nav-right-wrapper {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+  .nav-pill-right {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 24px;
+    padding: 10px;
+    gap: 6px;
+    width: 100%;
+    height: auto;
+  }
+  .brand-left,
+  .brand-center {
+    margin: 6px auto;
+    justify-content: center;
+  }
+  .nav-item { justify-content: flex-start; gap: 10px; height: 42px; }
+  .nav-item.active .nav-text,
+  .nav-text { max-width: 200px; opacity: 1; }
+  .register-bubble { width: 100%; }
+}
+</style>
+    <link rel="stylesheet" href="bmun-site-theme.css">
+</head>
+<body>
+    <!-- BOTO -->
+    <div id="bmun-page-transition" class="bmun-page-transition is-active" aria-hidden="false" data-text-animate-skip>
+        <div class="bpt-backdrop"></div>
+        <div class="bpt-stage">
+            <div class="bpt-panel bpt-panel-left"></div>
+            <div class="bpt-panel bpt-panel-right"></div>
+            <div class="bpt-spine" id="bpt-spine">
+                <span class="bpt-stitch is-left" style="top:12%"></span>
+                <span class="bpt-stitch is-right" style="top:12%"></span>
+                <span class="bpt-stitch is-left" style="top:28%"></span>
+                <span class="bpt-stitch is-right" style="top:28%"></span>
+                <span class="bpt-stitch is-left" style="top:44%"></span>
+                <span class="bpt-stitch is-right" style="top:44%"></span>
+                <span class="bpt-stitch is-left" style="top:60%"></span>
+                <span class="bpt-stitch is-right" style="top:60%"></span>
+                <span class="bpt-stitch is-left" style="top:76%"></span>
+                <span class="bpt-stitch is-right" style="top:76%"></span>
+            </div>
+            <div class="bpt-seam" id="bpt-seam"></div>
+            <div class="bpt-line bpt-line-l" id="bpt-line-l"></div>
+            <div class="bpt-line bpt-line-r" id="bpt-line-r"></div>
+            <div class="bpt-seal" id="bpt-seal">
+                <img src="bmunlogo.png" alt="" width="48" height="48" decoding="async">
+            </div>
+            <div class="bpt-black" id="bpt-black">
+                <div class="bpt-reveal-bg" id="bpt-reveal-bg"></div>
+                <div class="bpt-title-block" id="bpt-title-block">
+                    <div class="bpt-kanji" id="bpt-kanji">BMUN'26<span class="bpt-kanji-fill" id="bpt-kanji-fill" aria-hidden="true">BMUN'26</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TN -->
+    <div class="header-container is-transition-hidden" id="site-header">
+        <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false" type="button">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-right-wrapper">
+            <div class="nav-pill-right">
+                <a href="index.html" class="nav-item active" onclick="scrollToTop(); return false;"><span class="material-symbols-outlined nav-ico" aria-hidden="true">home</span><span class="nav-text">HOME</span></a>
+                <div class="nav-dd nav-dd--councils" data-text-animate-skip>
+                  <a href="COUNCILS1.html" class="nav-item nav-dd-trigger" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined nav-ico" aria-hidden="true">account_balance</span><span class="nav-text">COUNCILS</span></a>
+                                    <div class="nav-dd-mega" role="menu">
+                    <a href="COUNCILS1.html#council-unsc" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/un.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">UNSC</span></a>
+                    <a href="COUNCILS1.html#council-uncsw" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/unwomen.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">UNCSW</span></a>
+                    <a href="COUNCILS1.html#council-fifa" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/fifa.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">FIFA</span></a>
+                    <a href="COUNCILS1.html#council-fia" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/fia-official.png" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">FIA</span></a>
+                    <a href="COUNCILS1.html#council-fcc" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/fcc.png" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">FCC</span></a>
+                    <a href="COUNCILS1.html#council-hcc" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/hcc.png" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">HCC</span></a>
+                    <a href="COUNCILS1.html#council-covhe" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/covhe.png" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">COVHE</span></a>
+                    <a href="COUNCILS1.html#council-unicef" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/unicef.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">UNICEF</span></a>
+                    <a href="COUNCILS1.html#council-eu" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/eu.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">EU</span></a>
+                    <a href="COUNCILS1.html#council-copuos" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/unoosa.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">COPUOS</span></a>
+                    <a href="COUNCILS1.html#council-unga" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/un.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">UNGA</span></a>
+                    <a href="COUNCILS1.html#council-pokemon" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/pokemon.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">POKEMON</span></a>
+                    <a href="COUNCILS1.html#council-who" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/who.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">WHO</span></a>
+                    <a href="COUNCILS1.html#council-loksabha" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><img src="councils/logos/loksabha.svg" alt="" width="22" height="22" decoding="async"></span><span class="nav-mega-label">LOK SABHA</span></a>
+                  </div>
+                </div>
+                <a href="index.html" class="brand-left brand-center" onclick="scrollToTop(); return false;">
+                    <img src="bmunlogo.png" alt="BMUN Logo" class="brand-logo" width="50" height="50" decoding="async">
+                </a>
+                                <div class="nav-dd nav-dd--secretariat" data-text-animate-skip>
+                  <a href="SECRETARIET2026.html" class="nav-item nav-dd-trigger" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined nav-ico" aria-hidden="true">supervisor_account</span><span class="nav-text">SECRETARIAT</span></a>
+                  <div class="nav-dd-mega" role="menu">
+                    <a href="SECRETARIET2026.html#dept-core" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">groups</span></span><span class="nav-mega-label">Core Sec</span></a>
+                    <a href="SECRETARIET2026.html#dept-directors" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">badge</span></span><span class="nav-mega-label">Directors</span></a>
+                    <a href="SECRETARIET2026.html#dept-research" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">science</span></span><span class="nav-mega-label">Research</span></a>
+                    <a href="SECRETARIET2026.html#dept-training" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">school</span></span><span class="nav-mega-label">Training</span></a>
+                    <a href="SECRETARIET2026.html#dept-logistics" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">local_shipping</span></span><span class="nav-mega-label">Logistics</span></a>
+                    <a href="SECRETARIET2026.html#dept-finance" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">payments</span></span><span class="nav-mega-label">Finance</span></a>
+                    <a href="SECRETARIET2026.html#dept-media" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">photo_camera</span></span><span class="nav-mega-label">Media</span></a>
+                    <a href="SECRETARIET2026.html#dept-operations" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">settings</span></span><span class="nav-mega-label">Operations</span></a>
+                    <a href="SECRETARIET2026.html#dept-security" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">security</span></span><span class="nav-mega-label">Security</span></a>
+                    <a href="SECRETARIET2026.html#dept-public-relations" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">campaign</span></span><span class="nav-mega-label">Public Relations</span></a>
+                    <a href="SECRETARIET2026.html#dept-hospitality" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">hotel</span></span><span class="nav-mega-label">Hospitality</span></a>
+                    <a href="SECRETARIET2026.html#dept-design-decor" class="nav-mega-item" role="menuitem"><span class="nav-mega-mark" aria-hidden="true"><span class="material-symbols-outlined">palette</span></span><span class="nav-mega-label">Design &amp; Decor</span></a>
+                  </div>
+                </div>
+                                <a href="PROMOTIONS.html" class="nav-item"><span class="material-symbols-outlined nav-ico" aria-hidden="true">celebration</span><span class="nav-text">EVENTS</span></a>
+                <a href="INFORMATIONS.html" class="nav-item"><span class="material-symbols-outlined nav-ico" aria-hidden="true">info</span><span class="nav-text">INFORMATION</span></a>
+                <a href="GALLERY.html" class="nav-item"><span class="material-symbols-outlined nav-ico" aria-hidden="true">photo_library</span><span class="nav-text">GALLERY</span></a>
+            </div>
+
+            <a href="REGISTER1.html" class="register-bubble" id="magnetic-reg-btn">
+                <div class="register-content">
+                    <span>REGISTER</span>
+                    <i class="fas fa-arrow-right-to-bracket"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- H -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative" data-theme="dark" style="min-height:100dvh; padding: var(--header-offset, 160px) 24px max(72px, calc(var(--header-offset, 160px) * 0.55)); box-sizing: border-box; overflow: visible;">
+        <div class="hero-collage-bg" aria-hidden="true"></div>
+
+        <!-- Static aviation trails — plane parked at each trail end -->
+        <div class="hero-flight-layer" aria-hidden="true" data-text-animate-skip>
+            <svg class="hero-flight-svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <!-- Left trail -->
+                <path class="hero-flight-path" d="M-90 620 C60 580, 160 640, 200 560 C250 450, 90 420, 150 330 C210 240, 280 180, 240 90 C210 30, 160 -20, 90 -70"/>
+                <!-- Right trail -->
+                <path class="hero-flight-path is-right" d="M1290 640 C1130 600, 1040 660, 1000 560 C950 440, 1120 410, 1060 320 C1000 230, 920 170, 970 80 C1000 20, 1080 -30, 1180 -70"/>
+
+                <!-- Planes fixed at trail ends (no motion) -->
+                <g class="hero-plane" transform="translate(145 55) rotate(-38)">
+                    <path d="M0 -7 L3 -1.5 L9 -1 L10 1 L3 1.2 L1.5 6 L4 7 L0 5 L-4 7 L-1.5 6 L-3 1.2 L-10 1 L-9 -1 L-3 -1.5 Z"/>
+                </g>
+                <g class="hero-plane" transform="translate(1055 55) rotate(38)">
+                    <path d="M0 -7 L3 -1.5 L9 -1 L10 1 L3 1.2 L1.5 6 L4 7 L0 5 L-4 7 L-1.5 6 L-3 1.2 L-10 1 L-9 -1 L-3 -1.5 Z"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="hero-brand-stack container mx-auto px-6 z-20 relative">
+            <img src="bmunlogo.png" alt="BMUN Crest" class="hero-crest-white mx-auto object-contain" width="240" height="240" decoding="async" fetchpriority="high">
+            <h1 class="hero-brand-title animate-overshoot">BMUN</h1>
+            <p class="hero-brand-subtext animate-fade-up">Bhavans Model United Nations 2026</p>
+            <a href="#journey" class="hero-scroll-cue animate-fade-up" aria-label="Scroll down">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Your Journey at BMUN — light textured bento -->
+    <section id="journey" class="journey-bento" data-theme="softSecondary">
+        <div class="section-divider" aria-hidden="true" data-text-animate-skip>
+            <svg class="editorial"
+                 xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 viewBox="0 24 150 28 "
+                 preserveAspectRatio="none">
+                <defs>
+                    <path id="gentle-wave"
+                          d="M-160 44c30 0
+                             58-18 88-18s
+                             58 18 88 18
+                             58-18 88-18
+                             58 18 88 18
+                             v44h-352z" />
+                </defs>
+                <g class="parallax1">
+                    <use xlink:href="#gentle-wave" x="50" y="3" fill="#d4e6f2"/>
+                </g>
+                <g class="parallax2">
+                    <use xlink:href="#gentle-wave" x="50" y="0" fill="#b7d3e6"/>
+                </g>
+                <g class="parallax3">
+                    <use xlink:href="#gentle-wave" x="50" y="9" fill="#bcd6e8"/>
+                </g>
+                <g class="parallax4">
+                    <use xlink:href="#gentle-wave" x="50" y="6" fill="#cfe0ee"/>
+                </g>
+            </svg>
+        </div>
+        <div class="journey-flight-layer" aria-hidden="true" data-text-animate-skip>
+            <svg class="journey-flight-svg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <!-- Single trail through card 01 (top-left) then card 04 (bottom-right) -->
+                <path class="journey-flight-path" d="M-40 120 C80 150, 160 240, 260 280 C360 320, 420 260, 520 300 C640 350, 720 420, 840 460 C960 500, 1080 520, 1260 560"/>
+                <g class="journey-plane" transform="translate(1210 555) rotate(22)">
+                    <path d="M0 -7 L3 -1.5 L9 -1 L10 1 L3 1.2 L1.5 6 L4 7 L0 5 L-4 7 L-1.5 6 L-3 1.2 L-10 1 L-9 -1 L-3 -1.5 Z"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="journey-inner">
+            <h2 class="journey-title animate-overshoot">YOUR JOURNEY AT BMUN'26</h2>
+
+            <div class="journey-grid">
+                <article class="journey-card journey-card--sm animate-fade-up">
+                    <span class="journey-num" aria-hidden="true">01</span>
+                    <div class="journey-card-body">
+                        <h3 class="journey-label">Lead with Confidence</h3>
+                    </div>
+                    <span class="journey-icon journey-icon--low" aria-hidden="true"><span class="material-symbols-outlined">workspace_premium</span></span>
+                </article>
+
+                <article class="journey-card journey-card--lg animate-fade-up">
+                    <span class="journey-num" aria-hidden="true">02</span>
+                    <div class="journey-card-body">
+                        <h3 class="journey-label">Speak to Inspire</h3>
+                    </div>
+                    <span class="journey-icon" aria-hidden="true"><span class="material-symbols-outlined">mic</span></span>
+                </article>
+
+                <article class="journey-card journey-card--lg journey-card--feature animate-fade-up">
+                    <span class="journey-num" aria-hidden="true">03</span>
+                    <div class="journey-card-body">
+                        <h3 class="journey-label">Debate with Precision</h3>
+                    </div>
+                    <span class="journey-icon" aria-hidden="true"><span class="material-symbols-outlined">forum</span></span>
+                </article>
+
+                <article class="journey-card journey-card--sm animate-fade-up">
+                    <span class="journey-num" aria-hidden="true">04</span>
+                    <div class="journey-card-body">
+                        <h3 class="journey-label">Think Critically</h3>
+                    </div>
+                    <span class="journey-icon journey-icon--low" aria-hidden="true"><span class="material-symbols-outlined">lightbulb</span></span>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-28 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-6 max-w-6xl relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="heading-font text-5xl md:text-6xl font-bold text-[#121820] tracking-tight animate-overshoot">Frequently Asked Questions</h2>
+                <p class="text-sm text-[#3a6b94] font-light mt-2 animate-fade-up">Get answers to the core procedural and operational parameters of our assembly.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-16">
+                <div class="interactive-glass-tile p-8 flex flex-col justify-between">
+                    <div class="tile-internal-3d space-y-4">
+                        <h3 class="heading-font text-2xl md:text-3xl font-bold text-[#121820] tracking-wide border-b border-[#a8c5dc]/40 pb-3 animate-fade-up">Why participate in BMUN?</h3>
+                        <p class="text-sm text-[#3a6b94] leading-relaxed font-light animate-fade-up">BMUN offers a unique opportunity to develop essential skills such as public speaking, negotiation, and leadership, all while deepening your understanding of pressing global issues.</p>
+                    </div>
+                </div>
+
+                <div class="interactive-glass-tile p-8 flex flex-col justify-between">
+                    <div class="tile-internal-3d space-y-4">
+                        <h3 class="heading-font text-2xl md:text-3xl font-bold text-[#121820] tracking-wide border-b border-[#a8c5dc]/40 pb-3 animate-fade-up">Eligibility & Standards</h3>
+                        <p class="text-sm text-[#3a6b94] leading-relaxed font-light animate-fade-up">School and Grades 6–12 from all other institutions. We seek participants who demonstrate a strong commitment to diplomacy, critical thinking, and global awareness.</p>
+                    </div>
+                </div>
+
+                <div class="interactive-glass-tile p-8 flex flex-col justify-between">
+                    <div class="tile-internal-3d space-y-4">
+                        <h3 class="heading-font text-2xl md:text-3xl font-bold text-[#121820] tracking-wide border-b border-[#a8c5dc]/40 pb-3 animate-fade-up">What is the dress code?</h3>
+                        <p class="text-sm text-[#3a6b94] leading-relaxed font-light animate-fade-up">The dress code is formal and professional. Suits with a collared shirt and tie for males, and formal dresses, suits, or blazers with trousers for females.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- F -->
+    <footer class="bmun-footer" id="footer">
+        <div class="footer-container">
+            <div class="footer-glass-panel">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h4 class="animate-fade-up">Navigation</h4>
+                                  <ul class="footer-nav-links animate-fade-up">
+            <li><a href="index.html" onclick="scrollToTop(); return false;">Home</a></li>
+            <li><a href="COUNCILS1.html">Councils</a></li>
+            <li><a href="SECRETARIET.html">Secretariat</a></li>
+            <li><a href="INFORMATIONS.html">Information</a></li>
+            <li><a href="GALLERY.html">Gallery</a></li>
+            <li><a href="REGISTER1.html">Register</a></li>
+            <li><a href="CONTACT.html">Contact</a></li>
+          </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="animate-fade-up">Location</h4>
+                        <div class="footer-location-title animate-fade-up">Bahrain Indian School</div>
+                        <p class="footer-location-text animate-fade-up">Building Number 109, Road 7307, Block 473, Abu Saiba, Kingdom of Bahrain</p>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="animate-fade-up">Contact Us</h4>
+                        <ul class="footer-contact-list animate-fade-up">
+                            <li><i class="fas fa-envelope"></i><a href="mailto:bmun.bis@gmail.com">bmun.bis@gmail.com</a></li>
+                            <li><i class="fab fa-instagram"></i><a href="https://instagram.com/bmun.bis" target="_blank">@bmun.bis</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom-panel">
+                <p class="footer-brand-title animate-fade-up">BMUN'26</p>
+                <p class="footer-power-text animate-fade-up">Powered by Sreyas Sreevalsan</p>
+                <p class="footer-copyright animate-fade-up">© 2026 BMUN. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+        <!-- S -->
+    <script>
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        window.__bmunAfterBook = function () {};
+    </script>
+
+<script>
+/* PBTOL */
+(function () {
+
+  function playSaiseiPageTransition(done) {
+var root = document.getElementById('bmun-page-transition');
+    var header = document.getElementById('site-header') || document.querySelector('.header-container');
+    if (!root || typeof gsap === 'undefined') {
+      if (header) header.classList.remove('is-transition-hidden');
+      if (typeof done === 'function') done();
+      return;
+    }
+
+    var left = root.querySelector('.bpt-panel-left');
+    var right = root.querySelector('.bpt-panel-right');
+    var spine = document.getElementById('bpt-spine');
+    var seam = document.getElementById('bpt-seam');
+    var seal = document.getElementById('bpt-seal');
+    var lineL = document.getElementById('bpt-line-l');
+    var lineR = document.getElementById('bpt-line-r');
+    var black = document.getElementById('bpt-black');
+    var title = document.getElementById('bpt-title-block');
+    var kanji = document.getElementById('bpt-kanji');
+    var kanjiFill = document.getElementById('bpt-kanji-fill');
+    var revealBg = document.getElementById('bpt-reveal-bg');
+    var stage = root.querySelector('.bpt-stage');
+    var sub = root.querySelector('.bpt-sub');
+    var tag = root.querySelector('.bpt-tag');
+
+    root.classList.add('is-active');
+    root.setAttribute('aria-hidden', 'false');
+
+    gsap.set(root, { opacity: 1 });
+    gsap.set(stage, {
+      scale: 0.98,
+      opacity: 1,
+      width: '100%',
+      height: '100dvh',
+      borderRadius: 0
+    });
+    gsap.set([left, right], { scaleX: 0.02, opacity: 1 });
+    gsap.set(spine, { opacity: 1, width: 10, marginLeft: -5 });
+    gsap.set(seam, { opacity: 0 });
+    gsap.set(seal, { opacity: 0, scale: 0.7 });
+    gsap.set([lineL, lineR], { opacity: 0, height: 0 });
+    gsap.set(black, { scaleX: 0, opacity: 1 });
+    gsap.set(title, { opacity: 0, y: 22, scale: 0.94, filter: 'blur(0px)' });
+    gsap.set([sub, tag].filter(Boolean), { opacity: 0, y: 10 });
+    gsap.set(revealBg, { opacity: 0, scale: 1.08 });
+    if (kanji) kanji.classList.remove('is-filled');
+    if (kanjiFill) gsap.set(kanjiFill, { clipPath: 'inset(100% 0 0 0)' });
+
+    var anim = gsap.timeline({
+      defaults: { ease: 'power2.inOut' },
+      onComplete: function () {
+        root.classList.add('is-done');
+        root.classList.remove('is-active');
+        root.setAttribute('aria-hidden', 'true');
+        if (header) {
+          header.classList.remove('is-transition-hidden');
+          gsap.set(header, { clearProps: 'opacity' });
+        }
+        gsap.set([stage, left, right, title, revealBg, black, spine, seam].filter(Boolean), {
+          clearProps: 'willChange,filter'
+        });
+        setTimeout(function () {
+          root.style.display = 'none';
+        }, 600);
+        if (typeof done === 'function') done();
+      }
+    });
+
+    anim.to(stage, { scale: 1, duration: 0.42, ease: 'power3.out' }, 0);
+    anim.to([left, right], { scaleX: 1, duration: 0.7, ease: 'power3.out' }, 0.08);
+    anim.to(spine, { width: 1, marginLeft: -0.5, duration: 0.45, ease: 'power2.inOut' }, 0.65);
+    anim.to(spine, { opacity: 0, duration: 0.28 }, 0.95);
+    anim.to(seam, { opacity: 1, duration: 0.3 }, 0.85);
+    anim.to(seal, { opacity: 1, scale: 1, duration: 0.55, ease: 'power2.out' }, 0.8);
+    anim.to(lineL, { opacity: 1, height: '58%', duration: 0.85, ease: 'power2.out' }, 1.25);
+    anim.to(lineR, { opacity: 1, height: '58%', duration: 0.85, ease: 'power2.out' }, 1.38);
+    anim.to(lineL, { height: '38%', duration: 0.65, ease: 'power1.inOut' }, 2.15);
+    anim.to(lineR, { height: '46%', duration: 0.65, ease: 'power1.inOut' }, 2.22);
+    anim.to([lineL, lineR, seal], { opacity: 0, duration: 0.4, ease: 'power1.in' }, 2.85);
+    anim.to(seam, { opacity: 0.85, duration: 0.25 }, 3.0);
+    anim.to(black, { scaleX: 1, duration: 0.95, ease: 'power3.inOut' }, 3.25);
+    anim.to([left, right, seam], { opacity: 0, duration: 0.4 }, 3.65);
+    anim.to(title, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power3.out' }, 3.95);
+    if (kanjiFill) {
+      anim.to(kanjiFill, { clipPath: 'inset(0% 0 0 0)', duration: 0.95, ease: 'power2.inOut' }, 4.35);
+    }
+    anim.add(function () {
+      if (kanji) kanji.classList.add('is-filled');
+    }, 5.15);
+    if (sub) anim.to(sub, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, 4.85);
+    if (tag) anim.to(tag, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 5.05);
+    anim.to(revealBg, { opacity: 1, scale: 1, duration: 1.15, ease: 'power2.inOut' }, 5.25);
+    anim.to(stage, {
+      scale: 1,
+      duration: 1.0,
+      ease: 'power3.inOut'
+    }, 5.35);
+    anim.to(title, {
+      scale: 1.18,
+      y: -28,
+      opacity: 0,
+      filter: 'blur(10px)',
+      duration: 0.85,
+      ease: 'power3.inOut'
+    }, 5.95);
+    anim.to(black, { opacity: 0, duration: 0.9, ease: 'power2.inOut' }, 6.1);
+    anim.to(root, { opacity: 0, duration: 0.75, ease: 'power2.inOut' }, 6.35);
+    if (header) {
+      anim.to(header, { opacity: 1, duration: 0.55, ease: 'power1.out' }, 6.2);
+    }
+  }
+
+  function start() {
+    playSaiseiPageTransition(function () {
+      if (typeof window.__bmunAfterBook === 'function') window.__bmunAfterBook();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();
+</script>
+
+
+
+<script>
+/* HNWSD */
+(function () {
+  var header = document.getElementById('site-header') || document.querySelector('.header-container');
+  if (!header) return;
+  var lastY = window.scrollY || 0;
+  var ticking = false;
+  function updateNavVisibility() {
+    ticking = false;
+    if (header.classList.contains('is-transition-hidden')) return;
+    var y = window.scrollY || window.pageYOffset || 0;
+    if (y <= 10) {
+      header.classList.remove('is-nav-hidden');
+    } else if (y > lastY + 4) {
+      header.classList.add('is-nav-hidden');
+    } else if (y < lastY - 4) {
+      header.classList.remove('is-nav-hidden');
+    }
+    lastY = y;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateNavVisibility);
+    }
+  }, { passive: true });
+})();
+</script>
+
+<script src="bmun-nav.js"></script>
+    <script src="bmun-smooth.js"></script>
+    <script src="bmun-text-motion.js"></script>
+</body>
+</html>
